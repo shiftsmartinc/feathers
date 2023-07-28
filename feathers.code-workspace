@@ -1,0 +1,113 @@
+{
+	"folders": [
+		{
+			"name": "✨ feathers",
+			"path": "."
+		},
+		{
+			"name": "📦 @feathersjs/adapter-commons",
+			"path": "packages/adapter-commons"
+		},
+		{
+			"name": "📦 @feathersjs/adapter-tests",
+			"path": "packages/adapter-tests"
+		},
+		{
+			"name": "📦 @feathersjs/authentication",
+			"path": "packages/authentication"
+		},
+		{
+			"name": "📦 @feathersjs/authentication-client",
+			"path": "packages/authentication-client"
+		},
+		{
+			"name": "📦 @feathersjs/authentication-local",
+			"path": "packages/authentication-local"
+		},
+		{
+			"name": "📦 @feathersjs/authentication-oauth",
+			"path": "packages/authentication-oauth"
+		},
+		{
+			"name": "📦 @feathersjs/cli",
+			"path": "packages/cli"
+		},
+		{
+			"name": "📦 @feathersjs/client",
+			"path": "packages/client"
+		},
+		{
+			"name": "📦 @feathersjs/commons",
+			"path": "packages/commons"
+		},
+		{
+			"name": "📦 @feathersjs/configuration",
+			"path": "packages/configuration"
+		},
+		{
+			"name": "📦 create-feathers",
+			"path": "packages/create-feathers"
+		},
+		{
+			"name": "📦 @feathersjs/errors",
+			"path": "packages/errors"
+		},
+		{
+			"name": "📦 @feathersjs/express",
+			"path": "packages/express"
+		},
+		{
+			"name": "📦 @feathersjs/feathers",
+			"path": "packages/feathers"
+		},
+		{
+			"name": "📦 @feathersjs/generators",
+			"path": "packages/generators"
+		},
+		{
+			"name": "📦 @feathersjs/knex",
+			"path": "packages/knex"
+		},
+		{
+			"name": "📦 @feathersjs/koa",
+			"path": "packages/koa"
+		},
+		{
+			"name": "📦 @feathersjs/memory",
+			"path": "packages/memory"
+		},
+		{
+			"name": "📦 @feathersjs/mongodb",
+			"path": "packages/mongodb"
+		},
+		{
+			"name": "📦 @feathersjs/rest-client",
+			"path": "packages/rest-client"
+		},
+		{
+			"name": "📦 @feathersjs/schema",
+			"path": "packages/schema"
+		},
+		{
+			"name": "📦 @feathersjs/socketio",
+			"path": "packages/socketio"
+		},
+		{
+			"name": "📦 @feathersjs/socketio-client",
+			"path": "packages/socketio-client"
+		},
+		{
+			"name": "📦 @feathersjs/tests",
+			"path": "packages/tests"
+		},
+		{
+			"name": "📦 @feathersjs/transport-commons",
+			"path": "packages/transport-commons"
+		},
+		{
+			"name": "📦 @feathersjs/typebox",
+			"path": "packages/typebox"
+		}
+	],
+	"settings": {}
+}
