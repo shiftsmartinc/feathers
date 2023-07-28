@@ -2,16 +2,6 @@ import { generator, toFile, when } from '@feathershq/pinion'
 import { fileExists, localTemplate, renderSource } from '../../commons'
 import { ServiceGeneratorContext } from '../index'
 
-const authFieldsTemplate = (authStrategies: string[]) =>
-  authStrategies
-    .map((name) =>
-      name === 'local'
-        ? `  email: Type.String(),
-  password: Type.Optional(Type.String())`
-        : `  ${name}Id: Type.Optional(Type.String())`
-    )
-    .join(',\n')
-
 const template = ({
   camelName,
   upperName,
@@ -22,13 +12,10 @@ const template = ({
   cwd,
   lib
 }: ServiceGeneratorContext) => /* ts */ `// // For more information about this file see https://dove.feathersjs.com/guides/cli/service.schemas.html
+import type { ${upperName} } from './${camelName}.schema.gen';
+
 import { resolve } from '@feathersjs/schema'
-import { Type, getValidator, querySyntax } from '@feathersjs/typebox'${
-  type === 'mongodb'
-    ? `
-import { ObjectIdSchema } from '@feathersjs/typebox'`
-    : ''
-}
+import { Type, getValidator, querySyntax } from '@feathersjs/typebox'
 import type { Static } from '@feathersjs/typebox'
 ${localTemplate(authStrategies, `import { passwordHash } from '@feathersjs/authentication-local'`)}
 
@@ -38,11 +25,11 @@ import { dataValidator, queryValidator } from '${relative}/${
 }validators'
 
 // Main data model schema
-export const ${camelName}Schema = Type.Object({
-    ${type === 'mongodb' ? '_id: ObjectIdSchema()' : 'id: Type.Number()'},
-    ${isEntityService ? authFieldsTemplate(authStrategies) : `text: Type.String()`}
-  }, { $id: '${upperName}', additionalProperties: false })
-export type ${upperName} = Static<typeof ${camelName}Schema>
+import { ${camelName}Schema } from './${camelName}.schema.gen'
+
+export { ${camelName}Schema };
+export type { ${upperName} };
+
 export const ${camelName}Validator = getValidator(${camelName}Schema, dataValidator)
 export const ${camelName}Resolver = resolve<${upperName}, HookContext>({})
 
