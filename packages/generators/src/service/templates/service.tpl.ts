@@ -44,8 +44,9 @@ export const ${camelName}Path = '${path}'
 export const ${camelName}Methods = ['find', 'get', 'create', 'patch', 'remove'] as const`
 }
 
-export * from './${fileName}.class'
-${schema ? `export * from './${fileName}.schema'` : ''}
+/** TODO: Confirm these are not required [PDF 2023-07-28] */
+// export * from './${fileName}.class'
+// ${schema ? `export * from './${fileName}.schema'` : ''}
 
 // A configure function that registers the service and its hooks via \`app.configure\`
 export const ${camelName} = (app: Application) => {
