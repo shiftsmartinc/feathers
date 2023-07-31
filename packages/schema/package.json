@@ -1,5 +1,5 @@
 {
-  "name": "@feathersjs/schema",
+  "name": "@shiftsmartinc/feathers-schema",
   "description": "A common data schema definition format",
   "version": "5.0.8",
   "homepage": "https://feathersjs.com",
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/feathersjs/feathers.git",
+    "url": "git://github.com/shiftsmartinc/feathers.git",
     "directory": "packages/schema"
   },
   "author": {

@@ -1,5 +1,5 @@
 {
-  "name": "@feathersjs/adapter-tests",
+  "name": "@shiftsmartinc/feathers-adapter-tests",
   "version": "5.0.8",
   "description": "Feathers shared database adapter test suite",
   "homepage": "https://feathersjs.com",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/feathersjs/feathers.git",
+    "url": "git://github.com/shiftsmartinc/feathers.git",
     "directory": "packages/adapter-tests"
   },
   "author": {

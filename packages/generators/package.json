@@ -1,5 +1,5 @@
 {
-  "name": "@feathersjs/generators",
+  "name": "@shiftsmartinc/feathers-generators",
   "version": "5.0.8",
   "description": "Feathers CLI core generators, powered by Pinion",
   "homepage": "https://feathersjs.com",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/feathersjs/feathers.git",
+    "url": "git://github.com/shiftsmartinc/feathers.git",
     "directory": "packages/commons"
   },
   "author": {

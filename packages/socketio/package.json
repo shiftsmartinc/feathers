@@ -1,5 +1,5 @@
 {
-  "name": "@feathersjs/socketio",
+  "name": "@shiftsmartinc/feathers-socketio",
   "description": "The Feathers Socket.io real-time API provider",
   "version": "5.0.8",
   "homepage": "https://feathersjs.com",
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/feathersjs/feathers.git",
+    "url": "git://github.com/shiftsmartinc/feathers.git",
     "directory": "packages/socketio"
   },
   "author": {

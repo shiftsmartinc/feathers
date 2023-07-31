@@ -1,5 +1,5 @@
 {
-  "name": "@feathersjs/socketio-client",
+  "name": "@shiftsmartinc/feathers-socketio-client",
   "description": "The client for Socket.io through feathers-socketio",
   "version": "5.0.8",
   "homepage": "https://feathersjs.com",
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/feathersjs/feathers.git",
+    "url": "git://github.com/shiftsmartinc/feathers.git",
     "directory": "packages/socketio-client"
   },
   "author": {

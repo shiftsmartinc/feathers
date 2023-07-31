@@ -1,5 +1,5 @@
 {
-  "name": "@feathersjs/knex",
+  "name": "@shiftsmartinc/feathers-knex",
   "description": "Feathers SQL service adapter using KnexJS",
   "version": "5.0.8",
   "homepage": "https://feathersjs.com",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/feathersjs/feathers.git"
+    "url": "git://github.com/shiftsmartinc/feathers.git"
   },
   "author": {
     "name": "Feathers contributors",

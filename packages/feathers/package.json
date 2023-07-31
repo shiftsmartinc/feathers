@@ -1,11 +1,11 @@
 {
-  "name": "@feathersjs/feathers",
+  "name": "@shiftsmartinc/feathers-feathers",
   "description": "A framework for real-time applications and REST API with JavaScript and TypeScript",
   "version": "5.0.8",
   "homepage": "http://feathersjs.com",
   "repository": {
     "type": "git",
-    "url": "git://github.com/feathersjs/feathers.git",
+    "url": "git://github.com/shiftsmartinc/feathers.git",
     "directory": "packages/feathers"
   },
   "keywords": [

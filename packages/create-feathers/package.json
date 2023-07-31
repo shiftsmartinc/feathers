@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/feathersjs/feathers.git"
+    "url": "git://github.com/shiftsmartinc/feathers.git"
   },
   "author": {
     "name": "Feathers contributors",

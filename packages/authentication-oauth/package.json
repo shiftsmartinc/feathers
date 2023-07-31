@@ -1,5 +1,5 @@
 {
-  "name": "@feathersjs/authentication-oauth",
+  "name": "@shiftsmartinc/feathers-authentication-oauth",
   "description": "oAuth 1 and 2 authentication for Feathers. Powered by Grant.",
   "version": "5.0.8",
   "homepage": "https://feathersjs.com",
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/feathersjs/feathers.git",
+    "url": "git://github.com/shiftsmartinc/feathers.git",
     "directory": "packages/authentication-oauth"
   },
   "author": {

@@ -1,5 +1,5 @@
 {
-  "name": "@feathersjs/tests",
+  "name": "@shiftsmartinc/feathers-tests",
   "private": true,
   "description": "Feathers core module common tests",
   "version": "5.0.8",
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/feathersjs/feathers.git",
+    "url": "git://github.com/shiftsmartinc/feathers.git",
     "directory": "packages/tests"
   },
   "author": {

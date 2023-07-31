@@ -1,5 +1,5 @@
 {
-  "name": "@feathersjs/adapter-commons",
+  "name": "@shiftsmartinc/feathers-adapter-commons",
   "version": "5.0.8",
   "description": "Shared database adapter utility functions",
   "homepage": "https://feathersjs.com",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/feathersjs/feathers.git",
+    "url": "git://github.com/shiftsmartinc/feathers.git",
     "directory": "packages/adapter-commons"
   },
   "author": {

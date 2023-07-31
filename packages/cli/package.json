@@ -1,5 +1,5 @@
 {
-  "name": "@feathersjs/cli",
+  "name": "@shiftsmartinc/feathers-cli",
   "description": "The command line interface for creating Feathers applications",
   "version": "5.0.8",
   "homepage": "https://feathersjs.com",
@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/feathersjs/feathers.git"
+    "url": "git://github.com/shiftsmartinc/feathers.git"
   },
   "author": {
     "name": "Feathers contributors",

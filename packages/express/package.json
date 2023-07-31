@@ -1,5 +1,5 @@
 {
-  "name": "@feathersjs/express",
+  "name": "@shiftsmartinc/feathers-express",
   "description": "Feathers Express framework bindings and REST provider",
   "version": "5.0.8",
   "homepage": "https://feathersjs.com",
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/feathersjs/feathers.git",
+    "url": "git://github.com/shiftsmartinc/feathers.git",
     "directory": "packages/express"
   },
   "author": {

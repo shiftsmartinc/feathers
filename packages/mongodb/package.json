@@ -1,5 +1,5 @@
 {
-  "name": "@feathersjs/mongodb",
+  "name": "@shiftsmartinc/feathers-mongodb",
   "description": "Feathers MongoDB service adapter",
   "version": "5.0.8",
   "homepage": "https://feathersjs.com",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/feathersjs/feathers.git"
+    "url": "git://github.com/shiftsmartinc/feathers.git"
   },
   "author": {
     "name": "Feathers contributors",

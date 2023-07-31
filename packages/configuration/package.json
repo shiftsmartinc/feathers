@@ -1,5 +1,5 @@
 {
-  "name": "@feathersjs/configuration",
+  "name": "@shiftsmartinc/feathers-configuration",
   "description": "A small configuration module for your Feathers application.",
   "version": "5.0.8",
   "homepage": "https://feathersjs.com",
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/feathersjs/feathers.git",
+    "url": "git://github.com/shiftsmartinc/feathers.git",
     "directory": "packages/configuration"
   },
   "author": {

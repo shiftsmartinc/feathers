@@ -1,5 +1,5 @@
 {
-  "name": "@feathersjs/authentication-client",
+  "name": "@shiftsmartinc/feathers-authentication-client",
   "description": "The authentication plugin for feathers-client",
   "version": "5.0.8",
   "homepage": "https://feathersjs.com",
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/feathersjs/feathers.git",
+    "url": "git://github.com/shiftsmartinc/feathers.git",
     "directory": "packages/authentication-client"
   },
   "author": {
