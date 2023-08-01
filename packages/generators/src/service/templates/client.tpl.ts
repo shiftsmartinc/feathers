@@ -2,10 +2,12 @@ import { generator, toFile, after, before, when } from '@feathershq/pinion'
 import { fileExists, injectSource } from '../../commons'
 import { ServiceGeneratorContext } from '../index'
 
-const importTemplate = ({ upperName, folder, fileName, camelName }: ServiceGeneratorContext) => /* ts */ `
+const importTemplate = ({ upperName, 
+  singluarUpperName,
+  folder, fileName, camelName }: ServiceGeneratorContext) => /* ts */ `
 import { ${camelName}Client } from './services/${folder.join('/')}/${fileName}.shared'
 export type {
-  ${upperName},
+  ${singluarUpperName},
   ${upperName}Data,
   ${upperName}Query,
   ${upperName}Patch

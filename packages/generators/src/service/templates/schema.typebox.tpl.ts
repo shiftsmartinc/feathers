@@ -5,6 +5,7 @@ import { ServiceGeneratorContext } from '../index'
 const template = ({
   camelName,
   upperName,
+  singluarUpperName,
   relative,
   authStrategies,
   isEntityService,
@@ -35,9 +36,9 @@ export { ${camelName}Schema };
 export type { ${upperName} };
 
 export const ${camelName}Validator = getValidator(${camelName}Schema, dataValidator)
-export const ${camelName}Resolver = resolve<${upperName}, HookContext>({})
+export const ${camelName}Resolver = resolve<${singluarUpperName}, HookContext>({})
 
-export const ${camelName}ExternalResolver = resolve<${upperName}, HookContext>({
+export const ${camelName}ExternalResolver = resolve<${singluarUpperName}, HookContext>({
   ${localTemplate(
     authStrategies,
     `/** The password should never be visible externally */
@@ -61,7 +62,7 @@ export const ${camelName}DataSchema = Type.Pick(${camelName}Schema, [
 })
 export type ${upperName}Data = Static<typeof ${camelName}DataSchema>
 export const ${camelName}DataValidator = getValidator(${camelName}DataSchema, dataValidator)
-export const ${camelName}DataResolver = resolve<${upperName}, HookContext>({
+export const ${camelName}DataResolver = resolve<${singluarUpperName}, HookContext>({
   ${localTemplate(authStrategies, `password: passwordHash({ strategy: 'local' })`)}
 })
 
@@ -75,7 +76,7 @@ export const ${camelName}PatchSchema = Type.Partial(${camelName}Schema, {
 })
 export type ${upperName}Patch = Static<typeof ${camelName}PatchSchema>
 export const ${camelName}PatchValidator = getValidator(${camelName}PatchSchema, dataValidator)
-export const ${camelName}PatchResolver = resolve<${upperName}, HookContext>({
+export const ${camelName}PatchResolver = resolve<${singluarUpperName}, HookContext>({
   ${localTemplate(authStrategies, `password: passwordHash({ strategy: 'local' })`)}
 })
 

@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import pluralize from 'pluralize'
 import { generator, runGenerator, runGenerators, prompt } from '@feathershq/pinion'
 
 import {
@@ -48,6 +49,14 @@ export interface ServiceGeneratorContext extends FeathersBaseContext {
    * The kebab-cased name of the path. Will be used for e.g. database names
    */
   kebabPath: string
+  /**
+   * Singular version of the service name
+   */
+  singluarCamelName: string
+  /**
+   * Singular version of the service name starting with an uppercase letter
+   */
+  singluarUpperName: string
   /**
    * Indicates how many file paths we should go up to import other things (e.g. `../../`)
    */
@@ -180,11 +189,15 @@ export const generate = (ctx: ServiceGeneratorArguments) =>
       )
     )
     .then(async (ctx): Promise<ServiceGeneratorContext> => {
-      const { name, path, type, authStrategies = [] } = ctx
+      const { path, type, authStrategies = [] } = ctx
+      const name = pluralize(ctx.name)
+
       const kebabName = _.kebabCase(name)
       const camelName = _.camelCase(name)
       const upperName = _.upperFirst(camelName)
       const className = `${upperName}Service`
+      const singluarCamelName = pluralize.singular(name)
+      const singluarUpperName = _.upperFirst(singluarCamelName)
 
       const folder = path.split('/').filter((el) => el !== '')
       const relative = ['', ...folder].map(() => '..').join('/')
@@ -201,6 +214,8 @@ export const generate = (ctx: ServiceGeneratorArguments) =>
         className,
         kebabName,
         camelName,
+        singluarCamelName,
+        singluarUpperName,
         kebabPath,
         relative,
         authStrategies,

@@ -15,6 +15,7 @@ const authFieldsTemplate = (authStrategies: string[]) =>
 const template = ({
   camelName,
   upperName,
+  singluarUpperName,
   relative,
   authStrategies,
   isEntityService,
@@ -57,9 +58,9 @@ export const ${camelName}Schema = {
 } as const
 export type ${upperName} = FromSchema<typeof ${camelName}Schema>
 export const ${camelName}Validator = getValidator(${camelName}Schema, dataValidator)
-export const ${camelName}Resolver = resolve<${upperName}, HookContext>({})
+export const ${camelName}Resolver = resolve<${singluarUpperName}, HookContext>({})
 
-export const ${camelName}ExternalResolver = resolve<${upperName}, HookContext>({
+export const ${camelName}ExternalResolver = resolve<${singluarUpperName}, HookContext>({
   ${localTemplate(
     authStrategies,
     `// The password should never be visible externally

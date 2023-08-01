@@ -55,6 +55,7 @@
     "@feathershq/pinion": "^0.3.5",
     "chalk": "^4.0.1",
     "lodash": "^4.17.21",
+    "pluralize": "^8.0.0",
     "prettier": "^3.0.0",
     "typescript": "^5.1.6"
   },
@@ -78,6 +79,7 @@
     "@feathersjs/typebox": "^5.0.8",
     "@types/mocha": "^10.0.1",
     "@types/node": "^20.4.2",
+    "@types/pluralize": "^0.0.30",
     "@types/prettier": "^2.7.3",
     "axios": "^1.4.0",
     "mocha": "^10.2.0",
