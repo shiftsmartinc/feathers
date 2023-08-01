@@ -25,10 +25,10 @@ ${localTemplate(authStrategies, `import { passwordHash } from '@feathersjs/authe
 
 import type { HookContext } from '${relative}/declarations'
 import { dataValidator, queryValidator } from '${relative}/${
-  fileExists(cwd, lib, 'schemas') ? 'schemas/' : '' // This is for legacy backwards compatibility
+  fileExists(cwd, lib, 'schemas') ? 'schemas/' : '' /** This is for legacy backwards compatibility */
 }validators'
 
-// Main data model schema
+/** Main data model schema */
 import { ${camelName} as ${camelName}Schema } from './${fileName}.schema.gen'
 
 export { ${camelName}Schema };
@@ -40,12 +40,16 @@ export const ${camelName}Resolver = resolve<${upperName}, HookContext>({})
 export const ${camelName}ExternalResolver = resolve<${upperName}, HookContext>({
   ${localTemplate(
     authStrategies,
-    `// The password should never be visible externally
+    `/** The password should never be visible externally */
   password: async () => undefined`
   )}  
 })
 
-// Schema for creating new entries
+/** 
+ * @title: ${camelName}DataSchema
+ * @description
+ * Schema for creating new entries 
+ */
 export const ${camelName}DataSchema = Type.Pick(${camelName}Schema, [
   ${
     isEntityService
@@ -61,7 +65,11 @@ export const ${camelName}DataResolver = resolve<${upperName}, HookContext>({
   ${localTemplate(authStrategies, `password: passwordHash({ strategy: 'local' })`)}
 })
 
-// Schema for updating existing entries
+/** 
+ * @title: ${camelName}PatchSchema
+ * @description
+ * Schema for updating existing entries 
+ */
 export const ${camelName}PatchSchema = Type.Partial(${camelName}Schema, {
   $id: '${upperName}Patch'
 })
@@ -71,7 +79,11 @@ export const ${camelName}PatchResolver = resolve<${upperName}, HookContext>({
   ${localTemplate(authStrategies, `password: passwordHash({ strategy: 'local' })`)}
 })
 
-// Schema for allowed query properties
+/** 
+ * @title: ${camelName}QueryProperties
+ * @description
+ * Schema for allowed query properties 
+ */
 export const ${camelName}QueryProperties = Type.Pick(${camelName}Schema, [
   '${type === 'mongodb' ? '_id' : 'id'}', ${
     isEntityService
@@ -81,7 +93,7 @@ export const ${camelName}QueryProperties = Type.Pick(${camelName}Schema, [
 ])
 export const ${camelName}QuerySchema = Type.Intersect([
   querySyntax(${camelName}QueryProperties),
-  // Add additional query properties here
+  /** Add additional query properties here */
   Type.Object({}, { additionalProperties: false })
 ], { additionalProperties: false })
 export type ${upperName}Query = Static<typeof ${camelName}QuerySchema>
@@ -90,7 +102,7 @@ export const ${camelName}QueryResolver = resolve<${upperName}Query, HookContext>
   ${
     isEntityService
       ? `
-  // If there is a user (e.g. with authentication), they are only allowed to see their own data
+  /** If there is a user (e.g. with authentication), they are only allowed to see their own data */
   ${type === 'mongodb' ? '_id' : 'id'}: async (value, user, context) => {
     if (context.params.user) {
       return context.params.user.${type === 'mongodb' ? '_id' : 'id'}
