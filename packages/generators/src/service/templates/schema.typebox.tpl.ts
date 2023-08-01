@@ -5,19 +5,19 @@ import { ServiceGeneratorContext } from '../index'
 const template = ({
   camelName,
   upperName,
+  singluarCamelName,
   singluarUpperName,
+  fileName,
   relative,
   authStrategies,
   isEntityService,
   type,
   cwd,
-  lib,
-  fileName
+  lib
 }: ServiceGeneratorContext) => /* ts */ `/**
  * @external https://dove.feathersjs.com/guides/cli/service.schemas.html
  * @description For more information about this file see the link above.
  */
-import type { ${upperName} } from './${fileName}.schema.gen';
 
 import { resolve } from '@feathersjs/schema'
 import { Type, getValidator, querySyntax } from '@feathersjs/typebox'
@@ -30,10 +30,9 @@ import { dataValidator, queryValidator } from '${relative}/${
 }validators'
 
 /** Main data model schema */
-import { ${camelName} as ${camelName}Schema } from './${fileName}.schema.gen'
-
+import { ${singluarCamelName} as ${camelName}Schema } from './${fileName}.schema.gen'
 export { ${camelName}Schema };
-export type { ${upperName} };
+export type ${singluarUpperName} = Static<typeof ${camelName}Schema>
 
 export const ${camelName}Validator = getValidator(${camelName}Schema, dataValidator)
 export const ${camelName}Resolver = resolve<${singluarUpperName}, HookContext>({})
