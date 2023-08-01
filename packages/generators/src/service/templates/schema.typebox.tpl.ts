@@ -12,7 +12,7 @@ const template = ({
   cwd,
   lib,
   fileName
-}: ServiceGeneratorContext) => /* ts */ `// /**
+}: ServiceGeneratorContext) => /* ts */ `/**
  * @external https://dove.feathersjs.com/guides/cli/service.schemas.html
  * @description For more information about this file see the link above.
  */
@@ -29,7 +29,7 @@ import { dataValidator, queryValidator } from '${relative}/${
 }validators'
 
 // Main data model schema
-import { ${camelName}Schema } from './${fileName}.schema.gen'
+import { ${camelName} as ${camelName}Schema } from './${fileName}.schema.gen'
 
 export { ${camelName}Schema };
 export type { ${upperName} };
