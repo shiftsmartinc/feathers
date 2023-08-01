@@ -6,6 +6,7 @@ const template = ({ language }: AppGeneratorContext) => /* ts */ `/**
  * @external https://dove.feathersjs.com/guides/cli/channels.html
  * @description For more information about this file see the link above.
  */
+
 import type { RealTimeConnection, Params } from '@feathersjs/feathers'
 import type { AuthenticationResult } from '@feathersjs/authentication'
 import '@feathersjs/transport-commons'

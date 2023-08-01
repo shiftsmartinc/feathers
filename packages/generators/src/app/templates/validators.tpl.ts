@@ -6,6 +6,7 @@ const validatorTemplate = /* ts */ `/**
  * @external https://dove.feathersjs.com/guides/cli/validators.html
  * @description For more information about this file see the link above.
  */
+
 import { Ajv, addFormats } from '@feathersjs/schema'
 import type { FormatsPluginOptions } from '@feathersjs/schema'
 

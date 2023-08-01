@@ -7,6 +7,7 @@ const template = ({ authStrategies, upperName, type, lib }: AuthenticationGenera
  * @external https://dove.feathersjs.com/guides/cli/client.test.html
  * @description For more information about this file see the link above.
  */
+
 import assert from 'assert'
 import axios from 'axios'
 

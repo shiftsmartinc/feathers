@@ -63,6 +63,7 @@ export const ${camelName}ExternalResolver = resolve<${upperName}, HookContext>({
  * @description
  * Schema for creating new entries 
  */
+
 export const ${camelName}DataSchema = Type.Pick(${camelName}Schema, [
   ${
     isEntityService

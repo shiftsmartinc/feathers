@@ -6,6 +6,7 @@ const template = ({ database }: ConnectionGeneratorContext) => /* ts */ `/**
  * @external https://dove.feathersjs.com/guides/cli/databases.html
  * @description For more information about this file see the link above.
  */
+
 import { MongoClient } from 'mongodb'
 import type { Db } from 'mongodb'
 import type { Application } from './declarations'

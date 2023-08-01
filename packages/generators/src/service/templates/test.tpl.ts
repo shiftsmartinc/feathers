@@ -10,6 +10,7 @@ const template = ({
 * @external https://dove.feathersjs.com/guides/cli/service.test.html
 * @description For more information about this file see the link above.
 */
+
 import assert from 'assert'
 import { app } from '../${relative}/${lib}/app'
 
