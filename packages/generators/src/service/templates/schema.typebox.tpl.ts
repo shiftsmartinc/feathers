@@ -16,7 +16,7 @@ const template = ({
  * @external https://dove.feathersjs.com/guides/cli/service.schemas.html
  * @description For more information about this file see the link above.
  */
-import type { ${upperName} } from './${camelName}.schema.gen';
+import type { ${upperName} } from './${fileName}.schema.gen';
 
 import { resolve } from '@feathersjs/schema'
 import { Type, getValidator, querySyntax } from '@feathersjs/typebox'
