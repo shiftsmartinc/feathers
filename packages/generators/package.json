@@ -1,6 +1,6 @@
 {
   "name": "@shiftsmartinc/feathers-generators",
-  "version": "5.1.0-pre.3",
+  "version": "5.1.0-pre.4",
   "description": "Feathers CLI core generators, powered by Pinion",
   "homepage": "https://feathersjs.com",
   "keywords": [
