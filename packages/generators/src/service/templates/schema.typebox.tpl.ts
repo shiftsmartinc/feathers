@@ -10,7 +10,8 @@ const template = ({
   isEntityService,
   type,
   cwd,
-  lib
+  lib,
+  fileName
 }: ServiceGeneratorContext) => /* ts */ `// // For more information about this file see https://dove.feathersjs.com/guides/cli/service.schemas.html
 import type { ${upperName} } from './${camelName}.schema.gen';
 
@@ -25,7 +26,7 @@ import { dataValidator, queryValidator } from '${relative}/${
 }validators'
 
 // Main data model schema
-import { ${camelName}Schema } from './${camelName}.schema.gen'
+import { ${camelName}Schema } from './${fileName}.schema.gen'
 
 export { ${camelName}Schema };
 export type { ${upperName} };
