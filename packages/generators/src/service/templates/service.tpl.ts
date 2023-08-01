@@ -13,7 +13,10 @@ export const template = ({
   relative,
   schema,
   fileName
-}: ServiceGeneratorContext) => /* ts */ `// For more information about this file see https://dove.feathersjs.com/guides/cli/service.html
+}: ServiceGeneratorContext) => /* ts */ `/**
+ * @external https://dove.feathersjs.com/guides/cli/service.html
+ * @description For more information about this file see the link above.
+ */
 ${authentication || isEntityService ? `import { authenticate } from '@feathersjs/authentication'` : ''}
 ${
   schema

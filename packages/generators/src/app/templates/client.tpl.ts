@@ -2,10 +2,10 @@ import { generator, toFile, when } from '@feathershq/pinion'
 import { renderSource } from '../../commons'
 import { AppGeneratorContext } from '../index'
 
-const template = ({
-  name,
-  language
-}: AppGeneratorContext) => /* ts */ `// For more information about this file see https://dove.feathersjs.com/guides/cli/client.html
+const template = ({ name, language }: AppGeneratorContext) => /* ts */ `/**
+ * @external https://dove.feathersjs.com/guides/cli/client.html
+ * @description For more information about this file see the link above.
+ */
 import { feathers } from '@feathersjs/feathers'
 import type { TransportConnection, Application } from '@feathersjs/feathers'
 import authenticationClient from '@feathersjs/authentication-client'
