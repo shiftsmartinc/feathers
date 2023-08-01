@@ -14,6 +14,7 @@ const sharedTemplate = ({
  * @external https://dove.feathersjs.com/guides/cli/service.shared.html
  * @description For more information about this file see the link above.
  */
+
 import type { Params } from '@feathersjs/feathers'
 import type { ClientApplication } from '${relative}/client'
 import type {

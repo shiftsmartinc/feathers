@@ -8,6 +8,7 @@ const template = ({ database }: ConnectionGeneratorContext) => /* ts */ `/**
  * @external https://dove.feathersjs.com/guides/cli/databases.html
  * @description For more information about this file see the link above.
  */
+
 import knex from 'knex'
 import type { Knex } from 'knex'
 import type { Application } from './declarations'
@@ -30,6 +31,7 @@ const knexfile = ({ lib, language, database }: ConnectionGeneratorContext) => /*
  * @external https://dove.feathersjs.com/guides/cli/databases.html
  * @description For more information about this file see the link above.
  */
+
 import { app } from './${lib}/app'
 
 // Load our database connection info from the app configuration

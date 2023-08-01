@@ -5,6 +5,7 @@ const template = ({ framework, schema }: AppGeneratorContext) => /* ts */ `/**
  * @external https://dove.feathersjs.com/guides/cli/typescript.html
  * @description For more information about this file see the link above.
  */
+
 import { HookContext as FeathersHookContext, NextFunction } from '@feathersjs/feathers'
 import { Application as FeathersApplication } from '@feathersjs/${framework}'
 ${

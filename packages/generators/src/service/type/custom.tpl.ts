@@ -13,6 +13,7 @@ export const template = ({
  * @external https://dove.feathersjs.com/guides/cli/service.class.html#custom-services
  * @description For more information about this file see the link above.
  */
+
 import type { Id, NullableId, Params, ServiceInterface } from '@feathersjs/feathers'
 
 import type { Application } from '${relative}/declarations'

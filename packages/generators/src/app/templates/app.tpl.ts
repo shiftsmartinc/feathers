@@ -6,6 +6,7 @@ const tsKoaApp = ({ transports, schema }: AppGeneratorContext) => /* ts */ `/**
  * @external https://dove.feathersjs.com/guides/cli/application.html
  * @description For more information about this file see the link above.
  */
+
 import { feathers } from '@feathersjs/feathers'
 import configuration from '@feathersjs/configuration'
 import {
@@ -68,6 +69,7 @@ const tsExpressApp = ({ transports, schema }: AppGeneratorContext) => /* ts */ `
  * @external https://dove.feathersjs.com/guides/cli/application.html
  * @description For more information about this file see the link above.
  */
+
 import { feathers } from '@feathersjs/feathers'
 import express, {
   rest, json, urlencoded, cors,
