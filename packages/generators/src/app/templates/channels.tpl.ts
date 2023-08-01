@@ -2,9 +2,10 @@ import { generator, toFile, when } from '@feathershq/pinion'
 import { renderSource } from '../../commons'
 import { AppGeneratorContext } from '../index'
 
-const template = ({
-  language
-}: AppGeneratorContext) => /* ts */ `// For more information about this file see https://dove.feathersjs.com/guides/cli/channels.html
+const template = ({ language }: AppGeneratorContext) => /* ts */ `/**
+ * @external https://dove.feathersjs.com/guides/cli/channels.html
+ * @description For more information about this file see the link above.
+ */
 import type { RealTimeConnection, Params } from '@feathersjs/feathers'
 import type { AuthenticationResult } from '@feathersjs/authentication'
 import '@feathersjs/transport-commons'

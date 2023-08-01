@@ -21,7 +21,10 @@ const template = ({
   type,
   cwd,
   lib
-}: ServiceGeneratorContext) => /* ts */ `// For more information about this file see https://dove.feathersjs.com/guides/cli/service.schemas.html
+}: ServiceGeneratorContext) => /* ts */ `/**
+ * @external https://dove.feathersjs.com/guides/cli/service.schemas.html
+ * @description For more information about this file see the link above.
+ */
 import { resolve, getValidator, querySyntax } from '@feathersjs/schema'${
   type === 'mongodb'
     ? `

@@ -3,12 +3,10 @@ import { fileExists, renderSource } from '../../commons'
 import { AuthenticationGeneratorContext } from '../index'
 import { localTemplate } from '../../commons'
 
-const template = ({
-  authStrategies,
-  upperName,
-  type,
-  lib
-}: AuthenticationGeneratorContext) => /* ts */ `// For more information about this file see https://dove.feathersjs.com/guides/cli/client.test.html
+const template = ({ authStrategies, upperName, type, lib }: AuthenticationGeneratorContext) => /* ts */ `/**
+ * @external https://dove.feathersjs.com/guides/cli/client.test.html
+ * @description For more information about this file see the link above.
+ */
 import assert from 'assert'
 import axios from 'axios'
 
