@@ -43,6 +43,7 @@ generate
   .option('--name <name>', 'The service name')
   .option('--path <path>', 'The path to register the service on')
   .option('--type <type>', 'The service type (knex, mongodb, custom)')
+  .option('--templates <templatesRoot>', 'Path to a custom templates folder (optional)')
   .action(commandRunner('service'))
 
 generate

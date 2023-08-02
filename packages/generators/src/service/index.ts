@@ -1,4 +1,7 @@
 import _ from 'lodash'
+import fs, { Dirent } from 'fs'
+import { readdir } from 'fs/promises'
+import { join as pathJoin, resolve as pathResolve } from 'node:path'
 import { generator, runGenerator, runGenerators, prompt } from '@feathershq/pinion'
 
 import {
@@ -72,6 +75,11 @@ export interface ServiceGeneratorContext extends FeathersBaseContext {
    * The authentication strategies (if it is an entity service)
    */
   authStrategies: string[]
+
+  /**
+   * The root directory of user-specified custom templates
+   */
+  templatesRoot?: string
 }
 
 /**
@@ -174,6 +182,14 @@ export const generate = (ctx: ServiceGeneratorArguments) =>
                   }`
                 }
               ]
+            },
+            {
+              name: 'templatesRoot',
+              type: 'input',
+              when: false,
+              message: 'Specify your custom templates directory (optional)',
+              suffix: chalk.grey(' This is useful for customizing the generated code'),
+              default: null
             }
           ]
         }
@@ -191,6 +207,8 @@ export const generate = (ctx: ServiceGeneratorArguments) =>
       const fileName = _.last(folder)
       const kebabPath = _.kebabCase(path)
 
+      const templatesRoot = !!ctx.templatesRoot && ctx.templatesRoot.replace(/templates\/?$/, '')
+
       return {
         name,
         type,
@@ -204,8 +222,44 @@ export const generate = (ctx: ServiceGeneratorArguments) =>
         kebabPath,
         relative,
         authStrategies,
+        templatesRoot,
         ...ctx
       }
     })
-    .then(runGenerators<ServiceGeneratorContext>(__dirname, 'templates'))
-    .then(runGenerator<ServiceGeneratorContext>(__dirname, 'type', ({ type }) => `${type}.tpl`))
+    .then(async (ctx): Promise<ServiceGeneratorContext> => {
+      const dir = await mergeCustomTemplates(ctx, 'templates')
+
+      return runGenerators<ServiceGeneratorContext>(dir, 'templates')(ctx)
+    })
+    .then(async (ctx): Promise<ServiceGeneratorContext> => {
+      const dir = await mergeCustomTemplates(ctx, 'type')
+
+      return runGenerator<ServiceGeneratorContext>(dir, 'type', ({ type }) => `${type}.tpl`)(ctx)
+    })
+
+async function mergeCustomTemplates(
+  ctx: ServiceGeneratorContext,
+  templateType: 'templates' | 'type'
+): Promise<string> {
+  let dir = __dirname
+  if (ctx.templatesRoot && fs.existsSync(pathJoin(ctx.templatesRoot, 'type'))) {
+    const tmp = fs.mkdtempSync('feathers-service-')
+    const tmpTemplates = pathJoin(tmp, templateType)
+
+    fs.copyFileSync(pathJoin(__dirname, templateType), tmpTemplates)
+
+    const customFiles = await readdir(pathJoin(ctx.templatesRoot, templateType), { withFileTypes: true })
+
+    customFiles
+      .filter((file: Dirent) => file.isFile())
+      .map(({ name }: Dirent) => {
+        const file = pathResolve(ctx.templatesRoot, templateType, name)
+
+        fs.copyFileSync(file, tmpTemplates)
+      })
+
+    dir = tmp
+  }
+
+  return dir
+}
