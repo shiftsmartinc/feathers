@@ -9,7 +9,9 @@ const template = ({}: AppGeneratorContext) => /* ts */ `/**
 import type { Application } from '../declarations'
 
 export const services = (app: Application) => {
-  // All services will be registered here
+  // #region Service Registration
+  // These services will be registered with the application.
+  // #endregion Service Registration
 }
 `
 

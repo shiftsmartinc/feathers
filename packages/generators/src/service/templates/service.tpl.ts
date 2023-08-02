@@ -1,4 +1,4 @@
-import { generator, toFile, after, prepend } from '@feathershq/pinion'
+import { generator, toFile, before, prepend } from '@feathershq/pinion'
 import { fileExists, injectSource, renderSource } from '../../commons'
 import { ServiceGeneratorContext } from '../index'
 
@@ -159,7 +159,7 @@ export const generate = (ctx: ServiceGeneratorContext) =>
     .then(
       injectSource<ServiceGeneratorContext>(
         ({ camelName }) => `  app.configure(${camelName})`,
-        after('export const services'),
+        before('// #endregion Service Registration'),
         toServiceIndex
       )
     )

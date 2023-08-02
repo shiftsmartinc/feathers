@@ -2,10 +2,16 @@ import { generator, toFile, after, before, when } from '@feathershq/pinion'
 import { fileExists, injectSource } from '../../commons'
 import { ServiceGeneratorContext } from '../index'
 
-const importTemplate = ({ upperName, 
-  singluarUpperName,
-  folder, fileName, camelName }: ServiceGeneratorContext) => /* ts */ `
+const importTemplate = ({ folder, fileName, camelName }: ServiceGeneratorContext) => /* ts */ `
 import { ${camelName}Client } from './services/${folder.join('/')}/${fileName}.shared'
+`
+
+const typeExportTemplate = ({
+  upperName,
+  singluarUpperName,
+  folder,
+  fileName
+}: ServiceGeneratorContext) => /* ts */ `
 export type {
   ${singluarUpperName},
   ${upperName}Data,
@@ -26,9 +32,12 @@ export const generate = async (ctx: ServiceGeneratorContext) =>
       injectSource(registrationTemplate, before('return client'), toClientFile),
       injectSource(
         importTemplate,
-        after<ServiceGeneratorContext>(({ language }) =>
-          language === 'ts' ? 'import type { AuthenticationClientOptions }' : 'import authenticationClient'
-        ),
+        before<ServiceGeneratorContext>(({ language }) => language === '// #endregion Service Type Imports'),
+        toClientFile
+      ),
+      injectSource(
+        typeExportTemplate,
+        before<ServiceGeneratorContext>(({ language }) => language === '// #endregion Service Type Imports'),
         toClientFile
       )
     )

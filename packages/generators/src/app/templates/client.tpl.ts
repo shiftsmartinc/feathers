@@ -7,10 +7,17 @@ const template = ({ name, language }: AppGeneratorContext) => /* ts */ `/**
  * @description For more information about this file see the link above.
  */
 
-import { feathers } from '@feathersjs/feathers'
 import type { TransportConnection, Application } from '@feathersjs/feathers'
-import authenticationClient from '@feathersjs/authentication-client'
 import type { AuthenticationClientOptions } from '@feathersjs/authentication-client'
+
+import { feathers } from '@feathersjs/feathers'
+import authenticationClient from '@feathersjs/authentication-client'
+
+// #region Service Type Imports: These services will be made available within the client.
+// #endregion Service Type Imports
+
+// #region Service Type Exports: These are used to type the generated client.
+// #endregion Service Type Exports
 
 export interface Configuration {
   connection: TransportConnection<ServiceTypes>
