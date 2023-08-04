@@ -3,7 +3,7 @@ import { renderSource } from '../../commons'
 import { AppGeneratorContext } from '../index'
 
 const tsKoaApp = ({ transports, schema }: AppGeneratorContext) => /* ts */ `/**
- * @external https://dove.feathersjs.com/guides/cli/application.html
+ * @external https://feathersjs.com/guides/cli/application.html
  * @description For more information about this file see the link above.
  */
 
@@ -66,7 +66,7 @@ export { app }
 `
 
 const tsExpressApp = ({ transports, schema }: AppGeneratorContext) => /* ts */ `/**
- * @external https://dove.feathersjs.com/guides/cli/application.html
+ * @external https://feathersjs.com/guides/cli/application.html
  * @description For more information about this file see the link above.
  */
 

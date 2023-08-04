@@ -3,7 +3,7 @@ import { renderSource } from '../../commons'
 import { AppGeneratorContext } from '../index'
 
 const validatorTemplate = /* ts */ `/**
- * @external https://dove.feathersjs.com/guides/cli/validators.html
+ * @external https://feathersjs.com/guides/cli/validators.html
  * @description For more information about this file see the link above.
  */
 

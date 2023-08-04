@@ -4,7 +4,7 @@ import { AuthenticationGeneratorContext } from '../index'
 import { localTemplate, oauthTemplate } from '../../commons'
 
 const template = ({ authStrategies }: AuthenticationGeneratorContext) => /* ts */ `/**
- * @external https://dove.feathersjs.com/guides/cli/authentication.html
+ * @external https://feathersjs.com/guides/cli/authentication.html
  * @description For more information about this file see the link above.
  */
 
