@@ -3,7 +3,7 @@ import { ConnectionGeneratorContext } from '../index'
 import { injectSource, renderSource } from '../../commons'
 
 const template = ({ database }: ConnectionGeneratorContext) => /* ts */ `/**
- * @external https://dove.feathersjs.com/guides/cli/databases.html
+ * @external https://feathersjs.com/guides/cli/databases.html
  * @description For more information about this file see the link above.
  */
 

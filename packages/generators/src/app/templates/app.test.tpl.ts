@@ -3,7 +3,7 @@ import { renderSource } from '../../commons'
 import { AppGeneratorContext } from '../index'
 
 const template = ({ lib }: AppGeneratorContext) => /* ts */ `/**
- * @external https://dove.feathersjs.com/guides/cli/app.test.html
+ * @external https://feathersjs.com/guides/cli/app.test.html
  * @description For more information about this file see the link above.
  */
 

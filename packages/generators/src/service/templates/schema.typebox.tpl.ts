@@ -22,7 +22,7 @@ const template = ({
   cwd,
   lib
 }: ServiceGeneratorContext) => /* ts */ `/**
- * @external https://dove.feathersjs.com/guides/cli/service.schemas.html
+ * @external https://feathersjs.com/guides/cli/service.schemas.html
  * @description For more information about this file see the link above.
  */
 

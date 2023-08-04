@@ -3,7 +3,7 @@ import { HookGeneratorContext } from '../index'
 import { renderSource } from '../../commons'
 
 const aroundTemplate = ({ camelName, name }: HookGeneratorContext) => /* ts */ `/**
- * @external https://dove.feathersjs.com/guides/cli/hook.html
+ * @external https://feathersjs.com/guides/cli/hook.html
  * @description For more information about this file see the link above.
  */
 
@@ -16,7 +16,7 @@ export const ${camelName} = async (context: HookContext, next: NextFunction) => 
 `
 
 const regularTemplate = ({ camelName, name }: HookGeneratorContext) => /* ts */ `/**
- * @external https://dove.feathersjs.com/guides/cli/hook.html
+ * @external https://feathersjs.com/guides/cli/hook.html
  * @description For more information about this file see the link above.
  */
 

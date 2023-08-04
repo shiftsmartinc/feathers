@@ -9,7 +9,7 @@ export const template = ({
   fileName,
   relative
 }: ServiceGeneratorContext) => /* ts */ `/**
- * @external https://dove.feathersjs.com/guides/cli/service.class.html#custom-services
+ * @external https://feathersjs.com/guides/cli/service.class.html#custom-services
  * @description For more information about this file see the link above.
  */
 

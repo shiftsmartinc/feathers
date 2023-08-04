@@ -5,7 +5,7 @@ import { mkdir } from 'fs/promises'
 import path from 'path'
 
 const template = ({ database }: ConnectionGeneratorContext) => /* ts */ `/**
- * @external https://dove.feathersjs.com/guides/cli/databases.html
+ * @external https://feathersjs.com/guides/cli/databases.html
  * @description For more information about this file see the link above.
  */
 
@@ -28,7 +28,7 @@ export const ${database} = (app: Application) => {
 `
 
 const knexfile = ({ lib, language, database }: ConnectionGeneratorContext) => /* ts */ `/**
- * @external https://dove.feathersjs.com/guides/cli/databases.html
+ * @external https://feathersjs.com/guides/cli/databases.html
  * @description For more information about this file see the link above.
  */
 
