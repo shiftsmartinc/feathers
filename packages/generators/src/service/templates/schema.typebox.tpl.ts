@@ -56,7 +56,7 @@ export const ${camelName}DataSchema =  ${isEntityService ? `Type.Pick` : `Type.O
   ${
     isEntityService
       ? authStrategies.map((name) => (name === 'local' ? `'email', 'password'` : `'${name}Id'`)).join(', ')
-      : `...defaultReadonlyFields,`
+      : `...(defaultReadonlyFields as (keyof ${singluarUpperName})[]),`
   }
 ], {
   $id: '${upperName}Data'
@@ -72,9 +72,10 @@ export const ${camelName}DataResolver = resolve<${singluarUpperName}, HookContex
  * @description
  * Schema for updating existing entries 
  */
-export const ${camelName}PatchSchema = Type.Partial(Type.Omit(${camelName}Schema, [
-  ...defaultReadonlyFields,
-  ], {
+export const ${camelName}PatchSchema = Type.Partial(
+  Type.Omit(${camelName}Schema, [
+    ...(defaultReadonlyFields as (keyof ${singluarUpperName})[]),
+  ]), {
     $id: '${upperName}Patch'
   })
 export type ${upperName}Patch = Static<typeof ${camelName}PatchSchema>
@@ -92,7 +93,7 @@ export const ${camelName}QueryProperties = Type.Omit(${camelName}Schema, [
   '${type === 'mongodb' ? '_id' : ''}'
 ]) ${
   isEntityService
-    ? `Type.Pick(${camelName}Schema, [
+    ? `& Type.Pick(${camelName}Schema, [
   ${authStrategies.map((name) => (name === 'local' ? `'email'` : `'${name}Id'`)).join(', ')}
 ])`
     : ''
