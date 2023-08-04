@@ -60,8 +60,7 @@ export const ${camelName}ExternalResolver = resolve<${upperName}, HookContext>({
 
 /** 
  * @title: ${camelName}DataSchema
- * @description
- * Schema for creating new entries 
+ * @description Schema for creating new entries 
  */
 
 export const ${camelName}DataSchema = Type.Pick(${camelName}Schema, [
@@ -81,8 +80,7 @@ export const ${camelName}DataResolver = resolve<${upperName}, HookContext>({
 
 /** 
  * @title: ${camelName}PatchSchema
- * @description
- * Schema for updating existing entries 
+ * @description Schema for updating existing entries 
  */
 export const ${camelName}PatchSchema = Type.Partial(${camelName}Schema, {
   $id: '${upperName}Patch'
@@ -95,8 +93,7 @@ export const ${camelName}PatchResolver = resolve<${upperName}, HookContext>({
 
 /** 
  * @title: ${camelName}QueryProperties
- * @description
- * Schema for allowed query properties 
+ * @description Schema for allowed query properties 
  */
 export const ${camelName}QueryProperties = Type.Pick(${camelName}Schema, [
   '${type === 'mongodb' ? '_id' : 'id'}', ${
