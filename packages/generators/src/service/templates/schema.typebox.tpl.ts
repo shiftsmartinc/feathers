@@ -48,8 +48,7 @@ export const ${camelName}ExternalResolver = resolve<${singluarUpperName}, HookCo
 
 /** 
  * @title: ${camelName}DataSchema
- * @description
- * Schema for creating new entries 
+ * @description Schema for creating new entries 
  */
 
 export const ${camelName}DataSchema =  ${isEntityService ? `Type.Pick` : `Type.Omit`}(${camelName}Schema, [
@@ -69,8 +68,7 @@ export const ${camelName}DataResolver = resolve<${singluarUpperName}, HookContex
 
 /** 
  * @title: ${camelName}PatchSchema
- * @description
- * Schema for updating existing entries 
+ * @description Schema for updating existing entries 
  */
 export const ${camelName}PatchSchema = Type.Partial(
   Type.Omit(${camelName}Schema, [
@@ -86,8 +84,7 @@ export const ${camelName}PatchResolver = resolve<${singluarUpperName}, HookConte
 
 /** 
  * @title: ${camelName}QueryProperties
- * @description
- * Schema for allowed query properties 
+ * @description Schema for allowed query properties 
  */
 export const ${camelName}QueryProperties = Type.Omit(${camelName}Schema, [
   '${type === 'mongodb' ? '_id' : ''}'
