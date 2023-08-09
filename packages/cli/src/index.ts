@@ -25,7 +25,7 @@ export const program = new Command()
 
 program
   .name('feathers')
-  .description('The Feathers command line interface 🕊️')
+  .description('The Feathers command line interface 🕊️, modified for Shiftsmart')
   .version(version)
   .showHelpAfterError()
 
