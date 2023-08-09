@@ -31,6 +31,7 @@
     "publish:minor": "lerna publish minor && git commit -am \"chore: Update changelog\" && git push origin",
     "publish:patch": "lerna publish patch && git commit -am \"chore: Update changelog\" && git push origin",
     "publish:premajor": "lerna publish premajor --preid pre --pre-dist-tag pre && git commit -am \"chore: Update version and changelog\" && git push origin",
+    "publish:preminor": "lerna publish preminor --preid beta --pre-dist-tag beta && git commit -am \"chore: Update version and changelog\" && git push origin",
     "publish:prerelease": "lerna publish prerelease --preid beta --pre-dist-tag beta --dist-tag beta --force-publish && git commit -am \"chore: Update version and changelog\" && git push origin",
     "prettier": "npx prettier \"packages/{,!(node_modules)/**/(src|test)/**/}*.ts\" --write",
     "eslint": "eslint \"packages/**/*.ts\" --fix",
