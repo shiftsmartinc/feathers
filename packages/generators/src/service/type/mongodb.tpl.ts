@@ -45,7 +45,7 @@ export interface ${upperName}Params extends MongoDBAdapterParams<${upperName}Que
  * customized with your own functionality.
  */
 export class ${className}<ServiceParams extends Params = ${upperName}Params>
-  extends MongoDBService<${upperName}, ${upperName}Data, ${upperName}Params, ${upperName}Patch> {
+  extends MongoDBService<${upperName}, ${upperName}Data, ServiceParams, ${upperName}Patch> {
 }
 
 export const getOptions = (app: Application): MongoDBAdapterOptions => {
