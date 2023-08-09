@@ -40,7 +40,10 @@ export type { ${upperName}, ${upperName}Data, ${upperName}Patch, ${upperName}Que
 export interface ${upperName}Params extends MongoDBAdapterParams<${upperName}Query> {
 }
 
-// By default calls the standard MongoDB adapter service methods but can be customized with your own functionality.
+/**
+ * By default calls the standard MongoDB adapter service methods but can be
+ * customized with your own functionality.
+ */
 export class ${className}<ServiceParams extends Params = ${upperName}Params>
   extends MongoDBService<${upperName}, ${upperName}Data, ${upperName}Params, ${upperName}Patch> {
 }
