@@ -2,9 +2,10 @@ import { generator, toFile, when, renderTemplate } from '@feathershq/pinion'
 import { AppGeneratorContext } from '../index'
 
 const template = ({ framework, schema }: AppGeneratorContext) => /* ts */ `/**
- * @external https://dove.feathersjs.com/guides/cli/typescript.html
+ * @external https://feathersjs.com/guides/cli/typescript.html
  * @description For more information about this file see the link above.
  */
+
 import { HookContext as FeathersHookContext, NextFunction } from '@feathersjs/feathers'
 import { Application as FeathersApplication } from '@feathersjs/${framework}'
 ${

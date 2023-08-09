@@ -3,9 +3,10 @@ import { renderSource } from '../../commons'
 import { AppGeneratorContext } from '../index'
 
 const template = ({}: AppGeneratorContext) => /* ts */ `/**
- * @external https://dove.feathersjs.com/guides/cli/logging.html
+ * @external https://feathersjs.com/guides/cli/logging.html
  * @description For more information about this file see the link above.
  */
+
 import { createLogger, format, transports } from 'winston'
 
 // Configure the Winston logger. For the complete documentation see https://github.com/winstonjs/winston
@@ -23,9 +24,10 @@ export const logger = createLogger({
 `
 
 export const logErrorTemplate = /* ts */ `/**
- * @external https://dove.feathersjs.com/guides/cli/log-error.html
+ * @external https://feathersjs.com/guides/cli/log-error.html
  * @description For more information about this file see the link above.
  */
+
 import type { HookContext, NextFunction } from '../declarations'
 import { logger } from '../logger'
 

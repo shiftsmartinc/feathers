@@ -7,9 +7,10 @@ const migrationTemplate = ({
   authStrategies,
   isEntityService
 }: ServiceGeneratorContext) => /* ts */ `/**
- * @external https://dove.feathersjs.com/guides/cli/knexfile.html
+ * @external https://feathersjs.com/guides/cli/knexfile.html
  * @description For more information about this file see the link above.
  */
+
 import type { Knex } from 'knex'
 
 export async function up(knex: Knex): Promise<void> {
@@ -46,9 +47,10 @@ export const template = ({
   fileName,
   relative
 }: ServiceGeneratorContext) => /* ts */ `/**
- * @external https://dove.feathersjs.com/guides/cli/service.class.html#database-services
+ * @external https://feathersjs.com/guides/cli/service.class.html#database-services
  * @description For more information about this file see the link above.
  */
+
 import type { Params } from '@feathersjs/feathers'
 import { KnexService } from '@feathersjs/knex'
 import type { KnexAdapterParams, KnexAdapterOptions } from '@feathersjs/knex'
