@@ -1,7 +1,6 @@
 {
   "ci": false,
   "packages": [
-    "packages/generators",
     "packages/cli"
   ],
   "version": "5.0.8",
