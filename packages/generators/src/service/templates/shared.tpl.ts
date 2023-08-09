@@ -5,6 +5,7 @@ import { ServiceGeneratorContext } from '../index'
 const sharedTemplate = ({
   camelName,
   upperName,
+  singluarUpperName,
   className,
   fileName,
   relative,
@@ -17,14 +18,14 @@ const sharedTemplate = ({
 import type { Params } from '@feathersjs/feathers'
 import type { ClientApplication } from '${relative}/client'
 import type {
-  ${upperName},
+  ${singluarUpperName},
   ${upperName}Data,
   ${upperName}Patch,
   ${upperName}Query,
   ${className}
 } from './${fileName}.class'
 
-export type { ${upperName}, ${upperName}Data, ${upperName}Patch, ${upperName}Query }
+export type { ${singluarUpperName}, ${upperName}Data, ${upperName}Patch, ${upperName}Query }
 
 export type ${upperName}ClientService = Pick<
   ${className}<Params<${upperName}Query>>,

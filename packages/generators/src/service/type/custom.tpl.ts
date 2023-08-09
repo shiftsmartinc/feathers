@@ -5,6 +5,7 @@ import { ServiceGeneratorContext } from '../index'
 export const template = ({
   className,
   upperName,
+  singluarUpperName,
   schema,
   fileName,
   relative
@@ -19,7 +20,7 @@ import type { Application } from '${relative}/declarations'
 ${
   schema
     ? `import type {
-  ${upperName},
+  ${singluarUpperName},
   ${upperName}Data,
   ${upperName}Patch,
   ${upperName}Query
@@ -33,7 +34,7 @@ type ${upperName}Query = any
 `
 }
 
-export type { ${upperName}, ${upperName}Data, ${upperName}Patch, ${upperName}Query }
+export type { ${singluarUpperName}, ${upperName}Data, ${upperName}Patch, ${upperName}Query }
 
 export interface ${className}Options {
   app: Application
@@ -45,7 +46,7 @@ export interface ${upperName}Params extends Params<${upperName}Query> {
 
 // This is a skeleton for a custom service class. Remove or add the methods you need here
 export class ${className}<ServiceParams extends ${upperName}Params = ${upperName}Params>
-    implements ServiceInterface<${upperName}, ${upperName}Data, ServiceParams, ${upperName}Patch> {
+    implements ServiceInterface<${singluarUpperName}, ${upperName}Data, ServiceParams, ${upperName}Patch> {
   constructor (public options: ${className}Options) {
   }
 

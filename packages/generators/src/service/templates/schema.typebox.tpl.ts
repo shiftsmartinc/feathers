@@ -5,18 +5,19 @@ import { ServiceGeneratorContext } from '../index'
 const template = ({
   camelName,
   upperName,
+  singluarCamelName,
+  singluarUpperName,
+  fileName,
   relative,
   authStrategies,
   isEntityService,
   type,
   cwd,
-  lib,
-  fileName
+  lib
 }: ServiceGeneratorContext) => /* ts */ `/**
  * @external https://feathersjs.com/guides/cli/service.schemas.html
  * @description For more information about this file see the link above.
  */
-import type { ${upperName} } from './${fileName}.schema.gen';
 
 import { resolve } from '@feathersjs/schema'
 import { Type, getValidator, querySyntax } from '@feathersjs/typebox'
@@ -29,15 +30,15 @@ import { dataValidator, queryValidator } from '${relative}/${
 }validators'
 
 /** Main data model schema */
-import { ${camelName} as ${camelName}Schema } from './${fileName}.schema.gen'
-
+import { defaultReadonlyFields } from '../configs'
+import { ${singluarCamelName} as ${camelName}Schema } from './${fileName}.schema.gen'
 export { ${camelName}Schema };
-export type { ${upperName} };
+export type ${singluarUpperName} = Static<typeof ${camelName}Schema>
 
 export const ${camelName}Validator = getValidator(${camelName}Schema, dataValidator)
-export const ${camelName}Resolver = resolve<${upperName}, HookContext>({})
+export const ${camelName}Resolver = resolve<${singluarUpperName}, HookContext>({})
 
-export const ${camelName}ExternalResolver = resolve<${upperName}, HookContext>({
+export const ${camelName}ExternalResolver = resolve<${singluarUpperName}, HookContext>({
   ${localTemplate(
     authStrategies,
     `/** The password should never be visible externally */
@@ -50,18 +51,18 @@ export const ${camelName}ExternalResolver = resolve<${upperName}, HookContext>({
  * @description Schema for creating new entries 
  */
 
-export const ${camelName}DataSchema = Type.Pick(${camelName}Schema, [
+export const ${camelName}DataSchema =  ${isEntityService ? `Type.Pick` : `Type.Omit`}(${camelName}Schema, [
   ${
     isEntityService
       ? authStrategies.map((name) => (name === 'local' ? `'email', 'password'` : `'${name}Id'`)).join(', ')
-      : `'text'`
+      : `...(defaultReadonlyFields as (keyof ${singluarUpperName})[]),`
   }
 ], {
   $id: '${upperName}Data'
 })
 export type ${upperName}Data = Static<typeof ${camelName}DataSchema>
 export const ${camelName}DataValidator = getValidator(${camelName}DataSchema, dataValidator)
-export const ${camelName}DataResolver = resolve<${upperName}, HookContext>({
+export const ${camelName}DataResolver = resolve<${singluarUpperName}, HookContext>({
   ${localTemplate(authStrategies, `password: passwordHash({ strategy: 'local' })`)}
 })
 
@@ -69,12 +70,15 @@ export const ${camelName}DataResolver = resolve<${upperName}, HookContext>({
  * @title: ${camelName}PatchSchema
  * @description Schema for updating existing entries 
  */
-export const ${camelName}PatchSchema = Type.Partial(${camelName}Schema, {
-  $id: '${upperName}Patch'
-})
+export const ${camelName}PatchSchema = Type.Partial(
+  Type.Omit(${camelName}Schema, [
+    ...(defaultReadonlyFields as (keyof ${singluarUpperName})[]),
+  ]), {
+    $id: '${upperName}Patch'
+  })
 export type ${upperName}Patch = Static<typeof ${camelName}PatchSchema>
 export const ${camelName}PatchValidator = getValidator(${camelName}PatchSchema, dataValidator)
-export const ${camelName}PatchResolver = resolve<${upperName}, HookContext>({
+export const ${camelName}PatchResolver = resolve<${singluarUpperName}, HookContext>({
   ${localTemplate(authStrategies, `password: passwordHash({ strategy: 'local' })`)}
 })
 
@@ -82,13 +86,15 @@ export const ${camelName}PatchResolver = resolve<${upperName}, HookContext>({
  * @title: ${camelName}QueryProperties
  * @description Schema for allowed query properties 
  */
-export const ${camelName}QueryProperties = Type.Pick(${camelName}Schema, [
-  '${type === 'mongodb' ? '_id' : 'id'}', ${
-    isEntityService
-      ? authStrategies.map((name) => (name === 'local' ? `'email'` : `'${name}Id'`)).join(', ')
-      : `'text'`
-  }
-])
+export const ${camelName}QueryProperties = Type.Omit(${camelName}Schema, [
+  '${type === 'mongodb' ? '_id' : ''}'
+]) ${
+  isEntityService
+    ? `& Type.Pick(${camelName}Schema, [
+  ${authStrategies.map((name) => (name === 'local' ? `'email'` : `'${name}Id'`)).join(', ')}
+])`
+    : ''
+}
 export const ${camelName}QuerySchema = Type.Intersect([
   querySyntax(${camelName}QueryProperties),
   /** Add additional query properties here */
