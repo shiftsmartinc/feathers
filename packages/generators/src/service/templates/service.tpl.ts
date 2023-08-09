@@ -51,7 +51,9 @@ export const ${camelName}Methods = ['find', 'get', 'create', 'patch', 'remove'] 
 // export * from './${fileName}.class'
 // ${schema ? `export * from './${fileName}.schema'` : ''}
 
-/** A configure function that registers the service and its hooks via \`app.configure\` */
+/** 
+ * @description A configure function that registers the service and its hooks via \`app.configure\` 
+ */
 export const ${camelName} = (app: Application) => {
   /** Register our service on the Feathers application */
   app.use(${camelName}Path, new ${className}(getOptions(app)), {
@@ -125,7 +127,9 @@ export const ${camelName} = (app: Application) => {
   })
 }
 
-/** Add this service to the service type index */
+/** 
+ * @description Adds this service to the service type index 
+ */
 declare module '${relative}/declarations' {
   interface ServiceTypes {
     [${camelName}Path]: ${className}
