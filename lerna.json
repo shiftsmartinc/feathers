@@ -4,7 +4,7 @@
     "packages/generators",
     "packages/cli"
   ],
-  "version": "5.0.8",
+  "version": "5.1.0-beta.0",
   "command": {
     "bootstrap": {
       "hoist": true
