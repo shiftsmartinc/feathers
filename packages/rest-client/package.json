@@ -62,7 +62,6 @@
   "devDependencies": {
     "@feathersjs/express": "^5.0.8",
     "@feathersjs/memory": "^5.0.8",
-    "@feathersjs/tests": "^5.0.8",
     "@types/mocha": "^10.0.1",
     "@types/node": "^20.4.2",
     "@types/node-fetch": "^2.6.4",

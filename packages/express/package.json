@@ -66,7 +66,6 @@
   },
   "devDependencies": {
     "@feathersjs/authentication-local": "^5.0.8",
-    "@feathersjs/tests": "^5.0.8",
     "@types/lodash": "^4.14.195",
     "@types/mocha": "^10.0.1",
     "@types/node": "^20.4.2",
