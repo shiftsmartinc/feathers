@@ -1,6 +1,6 @@
 {
   "ci": false,
-  "packages": ["packages/cli", "packages/generator"],
+  "packages": ["packages/cli", "packages/generators"],
   "version": "5.1.0-beta.1",
   "command": {
     "bootstrap": {
