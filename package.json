@@ -1,6 +1,6 @@
 {
   "name": "@shiftsmartinc/feathers",
-  "private": true,
+  "private": false,
   "homepage": "http://feathersjs.com",
   "repository": {
     "type": "git",
@@ -26,7 +26,7 @@
     "packages/*"
   ],
   "scripts": {
-    "publish": "lerna publish --force-publish && git commit -am \"chore: Update changelog\" && git push origin",
+    "publish": "lerna publish preminor && git commit -am \"chore: Update changelog\" && git push origin",
     "publish:major": "lerna publish major && git commit -am \"chore: Update changelog\" && git push origin",
     "publish:minor": "lerna publish minor && git commit -am \"chore: Update changelog\" && git push origin",
     "publish:patch": "lerna publish patch && git commit -am \"chore: Update changelog\" && git push origin",
@@ -53,5 +53,6 @@
     "npm-check-updates": "^16.10.15",
     "prettier": "^3.0.1",
     "typescript": "^5.1.6"
-  }
+  },
+  "version": "5.1.0-beta.1"
 }
