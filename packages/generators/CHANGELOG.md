@@ -3,24 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0-beta.2](https://github.com/shiftsmartinc/feathers/compare/v5.1.0-beta.1...v5.1.0-beta.2) (2023-08-17)
+
+### Features
+
+- add "singluar" option to skip pluralization of the service name ([bf9e1ba](https://github.com/shiftsmartinc/feathers/commit/bf9e1bac936d944674a448e8b33365e0f34ab38b))
+
 ## [5.0.8](https://github.com/feathersjs/feathers/compare/v5.0.7...v5.0.8) (2023-07-19)
 
 **Note:** Version bump only for package @feathersjs/generators
 
-
-
-
-
 ## [5.0.7](https://github.com/feathersjs/feathers/compare/v5.0.6...v5.0.7) (2023-07-14)
-
 
 ### Bug Fixes
 
-* **generators:** Fix channel/service configuration order for Koa based apps ([580344e](https://github.com/feathersjs/feathers/commit/580344e96fe8a2f17fd53476af5a0c7ddefac0b6))
-
-
-
-
+- **generators:** Fix channel/service configuration order for Koa based apps ([580344e](https://github.com/feathersjs/feathers/commit/580344e96fe8a2f17fd53476af5a0c7ddefac0b6))
 
 ## [5.0.6](https://github.com/feathersjs/feathers/compare/v5.0.5...v5.0.6) (2023-06-15)
 

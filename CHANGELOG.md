@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0-beta.2](https://github.com/shiftsmartinc/feathers/compare/v5.1.0-beta.1...v5.1.0-beta.2) (2023-08-17)
+
+### Features
+
+- add "singluar" option to skip pluralization of the service name ([bf9e1ba](https://github.com/shiftsmartinc/feathers/commit/bf9e1bac936d944674a448e8b33365e0f34ab38b))
+
 **Note:** Version bump only for package @shiftsmartinc/feathers
 
 # [5.1.0-beta.0](https://github.com/shiftsmartinc/feathers/compare/v5.1.0-beta.1...v5.1.0-beta.0) (2023-08-09)
