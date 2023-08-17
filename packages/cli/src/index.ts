@@ -1,13 +1,19 @@
 import chalk from 'chalk'
 import { Command } from 'commander'
 import { dirname } from 'path'
-import { generator, runGenerator, getContext, FeathersBaseContext, version } from '@feathersjs/generators'
+import {
+  generator,
+  runGenerator,
+  getContext,
+  FeathersBaseContext,
+  version
+} from '@shiftsmartinc/feathers-generators'
 
 export * from 'commander'
 export { chalk }
 
 export const commandRunner = (name: string) => async (options: any) => {
-  const folder = dirname(require.resolve('@feathersjs/generators'))
+  const folder = dirname(require.resolve('@shiftsmartinc/feathers-generators'))
   const ctx = getContext<FeathersBaseContext>({
     ...options
   })
@@ -43,6 +49,7 @@ generate
   .option('--name <name>', 'The service name')
   .option('--path <path>', 'The path to register the service on')
   .option('--type <type>', 'The service type (knex, mongodb, custom)')
+  .option('--singular', 'Do not pluralize the service name')
   .action(commandRunner('service'))
 
 generate

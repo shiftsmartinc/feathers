@@ -81,6 +81,10 @@ export interface ServiceGeneratorContext extends FeathersBaseContext {
    * The authentication strategies (if it is an entity service)
    */
   authStrategies: string[]
+  /**
+   * Do not pluralize the input service name, leave as-is
+   */
+  singluar?: boolean
 }
 
 /**
@@ -189,8 +193,8 @@ export const generate = (ctx: ServiceGeneratorArguments) =>
       )
     )
     .then(async (ctx): Promise<ServiceGeneratorContext> => {
-      const { path, type, authStrategies = [] } = ctx
-      const name = pluralize(ctx.name)
+      const { path, type, authStrategies = [], singluar } = ctx
+      const name = !singluar ? pluralize(ctx.name) : ctx.name
 
       const kebabName = _.kebabCase(name)
       const camelName = _.camelCase(name)
