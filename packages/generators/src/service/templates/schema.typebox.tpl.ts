@@ -46,6 +46,8 @@ export const ${camelName}ExternalResolver = resolve<${singluarUpperName}, HookCo
   )}  
 })
 
+const ${camelName}ReadonlyFields: (keyof ${singluarUpperName})[] = [...defaultReadonlyFields]
+
 /** 
  * @title: ${camelName}DataSchema
  * @description Schema for creating new entries 
@@ -55,7 +57,7 @@ export const ${camelName}DataSchema =  ${isEntityService ? `Type.Pick` : `Type.O
   ${
     isEntityService
       ? authStrategies.map((name) => (name === 'local' ? `'email', 'password'` : `'${name}Id'`)).join(', ')
-      : `...(defaultReadonlyFields as (keyof ${singluarUpperName})[]),`
+      : `...(${camelName}ReadonlyFields),`
   }
 ], {
   $id: '${upperName}Data'
@@ -72,7 +74,7 @@ export const ${camelName}DataResolver = resolve<${singluarUpperName}, HookContex
  */
 export const ${camelName}PatchSchema = Type.Partial(
   Type.Omit(${camelName}Schema, [
-    ...(defaultReadonlyFields as (keyof ${singluarUpperName})[]),
+    ${camelName}ReadonlyFields,
   ]), {
     $id: '${upperName}Patch'
   })
