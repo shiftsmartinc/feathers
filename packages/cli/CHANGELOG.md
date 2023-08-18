@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0-beta.3](https://github.com/shiftsmartinc/feathers/compare/v5.1.0-beta.2...v5.1.0-beta.3) (2023-08-18)
+
+### Features
+
+- add "schema" option to cli service generator ([b06d294](https://github.com/shiftsmartinc/feathers/commit/b06d2945b6f98d8b52be08c12f5d32eef8edf850))
+- add cli options for auth and db ([453268c](https://github.com/shiftsmartinc/feathers/commit/453268cc8938b1711eb1feadb97515487dce3c5a))
+
 # [5.1.0-beta.2](https://github.com/shiftsmartinc/feathers/compare/v5.1.0-beta.1...v5.1.0-beta.2) (2023-08-17)
 
 ### Features
