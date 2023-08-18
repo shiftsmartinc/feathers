@@ -63,6 +63,7 @@ export const ${camelName} = (app: Application) => {
     events: []
   })
   /** Initialize hooks */
+  // @ts-expect-error [ENG-770] FIXME: Types of property 'update' are incompatible: NullableId vs AdapterId
   app.service(${camelName}Path).hooks({
     around: {
       all: [${

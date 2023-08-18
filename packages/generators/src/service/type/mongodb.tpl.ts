@@ -52,6 +52,7 @@ export class ${className}<ServiceParams extends Params = ${upperName}Params>
 
 export const getOptions = (app: Application): MongoDBAdapterOptions => {
   return {
+    id: 'uuid',
     paginate: app.get('paginate'),
     Model: app.get('mongodbClient').then(db => db.collection('${kebabPath}'))
   }
