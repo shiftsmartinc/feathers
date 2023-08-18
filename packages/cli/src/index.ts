@@ -52,7 +52,7 @@ generate
   .option('--auth <authentication>', 'does the service require authentication? (y, n)', (value) =>
     !value ? undefined : /^(y|true|1)/i.test(value)
   )
-  .option('--schema <schema>', 'The schema type (typebox, json, false)', (value: string, previous: T) =>
+  .option('--schema <schema>', 'The schema type (typebox, json, false)', (value: string) =>
     /false|none|0/i.test(value) ? false : value
   )
   .option('--singular', 'Do not pluralize the service name')
