@@ -49,6 +49,12 @@ generate
   .option('--name <name>', 'The service name')
   .option('--path <path>', 'The path to register the service on')
   .option('--type <type>', 'The service type (knex, mongodb, custom)')
+  .option('--auth <authentication>', 'does the service require authentication? (y, n)', (value) =>
+    !value ? undefined : /^(y|true|1)/i.test(value)
+  )
+  .option('--schema <schema>', 'The schema type (typebox, json, false)', (value: string, previous: T) =>
+    /false|none|0/i.test(value) ? false : value
+  )
   .option('--singular', 'Do not pluralize the service name')
   .action(commandRunner('service'))
 
