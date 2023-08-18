@@ -1,6 +1,6 @@
 {
   "name": "@shiftsmartinc/feathers-generators",
-  "version": "5.0.9-beta.0",
+  "version": "5.0.9-beta.1",
   "description": "Feathers CLI core generators, powered by Pinion",
   "homepage": "https://feathersjs.com",
   "keywords": [
@@ -78,8 +78,8 @@
     "@feathersjs/transport-commons": "^5.0.8",
     "@feathersjs/typebox": "^5.0.8",
     "@types/mocha": "^10.0.1",
-"@types/node": "^20.4.9",
-"@types/pluralize": "^0.0.30",
+    "@types/node": "^20.4.9",
+    "@types/pluralize": "^0.0.30",
     "@types/prettier": "^2.7.3",
     "axios": "^1.4.0",
     "mocha": "^10.2.0",

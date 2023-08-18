@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.9-beta.1](https://github.com/shiftsmartinc/feathers/compare/v5.1.0-beta.3...v5.0.9-beta.1) (2023-08-18)
+
+**Note:** Version bump only for package @shiftsmartinc/feathers-generators
+
 # [5.1.0-beta.3](https://github.com/shiftsmartinc/feathers/compare/v5.1.0-beta.2...v5.1.0-beta.3) (2023-08-18)
 
 ### Bug Fixes

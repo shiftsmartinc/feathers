@@ -1,7 +1,7 @@
 {
   "name": "@shiftsmartinc/feathers-cli",
   "description": "The command line interface for creating Feathers applications",
-  "version": "5.0.9-beta.0",
+  "version": "5.0.9-beta.1",
   "homepage": "https://feathersjs.com",
   "main": "lib/",
   "bin": {
@@ -52,7 +52,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@shiftsmartinc/feathers-generators": "^5.0.9-beta.0",
+    "@shiftsmartinc/feathers-generators": "^5.0.9-beta.1",
     "chalk": "^4.0.1",
     "commander": "^11.0.0"
   },
