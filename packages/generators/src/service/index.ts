@@ -3,7 +3,7 @@ import fs, { Dirent } from 'fs'
 import { readdir } from 'fs/promises'
 import { join as pathJoin, resolve as pathResolve } from 'node:path'
 import pluralize from 'pluralize'
-import { generator, runGenerator, runGenerators, prompt } from '@feathershq/pinion'
+import { generator, runGenerator, runGenerators, prompt, copyFiles, toFile, fromFile } from '@feathershq/pinion'
 
 import {
   checkPreconditions,
@@ -266,18 +266,19 @@ async function mergeCustomTemplates(
     return __dirname
   }
 
-  const tmp = fs.mkdtempSync('feathers-service-')
+  const tmp = fs.mkdtempSync('tmp-service-')
   const tmpTemplates = pathJoin(tmp, templateType)
 
-  fs.copyFileSync(pathJoin(__dirname, templateType), tmpTemplates)
+  await copyFiles(fromFile(__dirname, templateType), toFile(tmpTemplates))(ctx)
 
   const customFiles = await readdir(pathJoin(templatesRoot, templateType), { withFileTypes: true })
 
   customFiles
     .filter((file: Dirent) => file.isFile())
-    .map(({ name }: Dirent) => {
+    .forEach(async ({ name }: Dirent) => {
       const file = pathResolve(templatesRoot, templateType, name)
 
+      // TODO: fix this one failing
       fs.copyFileSync(file, tmpTemplates)
     })
 
