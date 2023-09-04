@@ -75,11 +75,10 @@ export interface ServiceGeneratorContext extends FeathersBaseContext {
    * The authentication strategies (if it is an entity service)
    */
   authStrategies: string[]
-
   /**
    * The root directory of user-specified custom templates
    */
-  templatesRoot?: string
+  templates?: string
 }
 
 /**
@@ -87,7 +86,7 @@ export interface ServiceGeneratorContext extends FeathersBaseContext {
  */
 export type ServiceGeneratorArguments = FeathersBaseContext &
   Partial<
-    Pick<ServiceGeneratorContext, 'name' | 'path' | 'type' | 'authentication' | 'isEntityService' | 'schema'>
+    Pick<ServiceGeneratorContext, 'name' | 'path' | 'type' | 'authentication' | 'isEntityService' | 'schema' | 'templates'>
   >
 
 export const generate = (ctx: ServiceGeneratorArguments) =>
@@ -184,7 +183,7 @@ export const generate = (ctx: ServiceGeneratorArguments) =>
               ]
             },
             {
-              name: 'templatesRoot',
+              name: 'templates',
               type: 'input',
               when: false,
               message: 'Specify your custom templates directory (optional)',
@@ -207,8 +206,6 @@ export const generate = (ctx: ServiceGeneratorArguments) =>
       const fileName = _.last(folder)
       const kebabPath = _.kebabCase(path)
 
-      const templatesRoot = !!ctx.templatesRoot && ctx.templatesRoot.replace(/templates\/?$/, '')
-
       return {
         name,
         type,
@@ -222,7 +219,6 @@ export const generate = (ctx: ServiceGeneratorArguments) =>
         kebabPath,
         relative,
         authStrategies,
-        templatesRoot,
         ...ctx
       }
     })
@@ -242,18 +238,19 @@ async function mergeCustomTemplates(
   templateType: 'templates' | 'type'
 ): Promise<string> {
   let dir = __dirname
-  if (ctx.templatesRoot && fs.existsSync(pathJoin(ctx.templatesRoot, 'type'))) {
+  const templatesRoot = ctx.templates
+  if (templatesRoot && fs.existsSync(pathJoin(templatesRoot, 'type'))) {
     const tmp = fs.mkdtempSync('feathers-service-')
     const tmpTemplates = pathJoin(tmp, templateType)
 
     fs.copyFileSync(pathJoin(__dirname, templateType), tmpTemplates)
 
-    const customFiles = await readdir(pathJoin(ctx.templatesRoot, templateType), { withFileTypes: true })
+    const customFiles = await readdir(pathJoin(templatesRoot, templateType), { withFileTypes: true })
 
     customFiles
       .filter((file: Dirent) => file.isFile())
       .map(({ name }: Dirent) => {
-        const file = pathResolve(ctx.templatesRoot, templateType, name)
+        const file = pathResolve(templatesRoot, templateType, name)
 
         fs.copyFileSync(file, tmpTemplates)
       })
