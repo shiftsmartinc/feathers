@@ -237,26 +237,30 @@ async function mergeCustomTemplates(
   ctx: ServiceGeneratorContext,
   templateType: 'templates' | 'type'
 ): Promise<string> {
-  let dir = __dirname
   const templatesRoot = ctx.templates
-  if (templatesRoot && fs.existsSync(pathJoin(templatesRoot, 'type'))) {
-    const tmp = fs.mkdtempSync('feathers-service-')
-    const tmpTemplates = pathJoin(tmp, templateType)
-
-    fs.copyFileSync(pathJoin(__dirname, templateType), tmpTemplates)
-
-    const customFiles = await readdir(pathJoin(templatesRoot, templateType), { withFileTypes: true })
-
-    customFiles
-      .filter((file: Dirent) => file.isFile())
-      .map(({ name }: Dirent) => {
-        const file = pathResolve(templatesRoot, templateType, name)
-
-        fs.copyFileSync(file, tmpTemplates)
-      })
-
-    dir = tmp
+  if(!templatesRoot) {
+    return __dirname
   }
 
-  return dir
+  const templatesDirExists = fileExists(templatesRoot, templateType)
+  if(!templatesDirExists) {
+    return __dirname
+  }
+
+  const tmp = fs.mkdtempSync('feathers-service-')
+  const tmpTemplates = pathJoin(tmp, templateType)
+
+  fs.copyFileSync(pathJoin(__dirname, templateType), tmpTemplates)
+
+  const customFiles = await readdir(pathJoin(templatesRoot, templateType), { withFileTypes: true })
+
+  customFiles
+    .filter((file: Dirent) => file.isFile())
+    .map(({ name }: Dirent) => {
+      const file = pathResolve(templatesRoot, templateType, name)
+
+      fs.copyFileSync(file, tmpTemplates)
+    })
+
+  return tmp
 }
