@@ -1,5 +1,5 @@
 {
-  "name": "@feathersjs/transport-commons",
+  "name": "@shiftsmartinc/feathers-transport-commons",
   "description": "Shared functionality for websocket providers",
   "version": "5.0.8",
   "homepage": "https://feathersjs.com",
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/feathersjs/feathers.git",
+    "url": "git://github.com/shiftsmartinc/feathers.git",
     "directory": "packages/transport-commons"
   },
   "author": {
@@ -62,9 +62,9 @@
   },
   "devDependencies": {
     "@types/encodeurl": "^1.0.0",
-    "@types/lodash": "^4.14.195",
+    "@types/lodash": "^4.14.196",
     "@types/mocha": "^10.0.1",
-    "@types/node": "^20.4.2",
+    "@types/node": "^20.4.9",
     "mocha": "^10.2.0",
     "shx": "^0.3.4",
     "ts-node": "^10.9.1",

@@ -1,5 +1,5 @@
 {
-  "name": "@feathersjs/schema",
+  "name": "@shiftsmartinc/feathers-schema",
   "description": "A common data schema definition format",
   "version": "5.0.8",
   "homepage": "https://feathersjs.com",
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/feathersjs/feathers.git",
+    "url": "git://github.com/shiftsmartinc/feathers.git",
     "directory": "packages/schema"
   },
   "author": {
@@ -67,7 +67,7 @@
   "devDependencies": {
     "@feathersjs/memory": "^5.0.8",
     "@types/mocha": "^10.0.1",
-    "@types/node": "^20.4.2",
+    "@types/node": "^20.4.9",
     "ajv-formats": "^2.1.1",
     "mocha": "^10.2.0",
     "shx": "^0.3.4",

@@ -1,5 +1,5 @@
 {
-  "name": "@feathersjs/commons",
+  "name": "@shiftsmartinc/feathers-commons",
   "version": "5.0.8",
   "description": "Shared Feathers utility functions",
   "homepage": "https://feathersjs.com",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/feathersjs/feathers.git",
+    "url": "git://github.com/shiftsmartinc/feathers.git",
     "directory": "packages/commons"
   },
   "author": {
@@ -53,7 +53,7 @@
   },
   "devDependencies": {
     "@types/mocha": "^10.0.1",
-    "@types/node": "^20.4.2",
+    "@types/node": "^20.4.9",
     "mocha": "^10.2.0",
     "shx": "^0.3.4",
     "ts-node": "^10.9.1",

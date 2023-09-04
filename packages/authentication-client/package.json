@@ -1,5 +1,5 @@
 {
-  "name": "@feathersjs/authentication-client",
+  "name": "@shiftsmartinc/feathers-authentication-client",
   "description": "The authentication plugin for feathers-client",
   "version": "5.0.8",
   "homepage": "https://feathersjs.com",
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/feathersjs/feathers.git",
+    "url": "git://github.com/shiftsmartinc/feathers.git",
     "directory": "packages/authentication-client"
   },
   "author": {
@@ -66,7 +66,7 @@
     "@feathersjs/socketio": "^5.0.8",
     "@feathersjs/socketio-client": "^5.0.8",
     "@types/mocha": "^10.0.1",
-    "@types/node": "^20.4.2",
+    "@types/node": "^20.4.9",
     "axios": "^1.4.0",
     "mocha": "^10.2.0",
     "shx": "^0.3.4",

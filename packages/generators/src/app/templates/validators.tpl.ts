@@ -2,7 +2,11 @@ import { generator, toFile } from '@feathershq/pinion'
 import { renderSource } from '../../commons'
 import { AppGeneratorContext } from '../index'
 
-const validatorTemplate = /* ts */ `// For more information about this file see https://dove.feathersjs.com/guides/cli/validators.html
+const validatorTemplate = /* ts */ `/**
+ * @external https://feathersjs.com/guides/cli/validators.html
+ * @description For more information about this file see the link above.
+ */
+
 import { Ajv, addFormats } from '@feathersjs/schema'
 import type { FormatsPluginOptions } from '@feathersjs/schema'
 

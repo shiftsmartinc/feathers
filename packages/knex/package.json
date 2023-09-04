@@ -1,5 +1,5 @@
 {
-  "name": "@feathersjs/knex",
+  "name": "@shiftsmartinc/feathers-knex",
   "description": "Feathers SQL service adapter using KnexJS",
   "version": "5.0.8",
   "homepage": "https://feathersjs.com",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/feathersjs/feathers.git"
+    "url": "git://github.com/shiftsmartinc/feathers.git"
   },
   "author": {
     "name": "Feathers contributors",
@@ -63,10 +63,10 @@
     "@feathersjs/adapter-tests": "^5.0.8",
     "@feathersjs/schema": "^5.0.8",
     "@types/mocha": "^10.0.1",
-    "@types/node": "^20.4.2",
+    "@types/node": "^20.4.9",
     "knex": "^2.5.1",
     "mocha": "^10.2.0",
-    "pg": "^8.11.1",
+    "pg": "^8.11.2",
     "shx": "^0.3.4",
     "sqlite3": "^5.1.6",
     "typescript": "^5.1.6"

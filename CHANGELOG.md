@@ -3,30 +3,51 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [5.0.8](https://github.com/feathersjs/feathers/compare/v5.0.7...v5.0.8) (2023-07-19)
+## [5.0.9-beta.2](https://github.com/shiftsmartinc/feathers/compare/v5.0.9-beta.1...v5.0.9-beta.2) (2023-08-18)
 
+**Note:** Version bump only for package @shiftsmartinc/feathers
+
+## [5.0.9-beta.1](https://github.com/shiftsmartinc/feathers/compare/v5.1.0-beta.3...v5.0.9-beta.1) (2023-08-18)
+
+**Note:** Version bump only for package @shiftsmartinc/feathers
+
+# [5.1.0-beta.3](https://github.com/shiftsmartinc/feathers/compare/v5.1.0-beta.2...v5.1.0-beta.3) (2023-08-18)
 
 ### Bug Fixes
 
-* add missing word ([#3237](https://github.com/feathersjs/feathers/issues/3237)) ([9a32184](https://github.com/feathersjs/feathers/commit/9a321848767e31176660d6937f8fa6d83ba215bd))
-* **transport-commons:** Handle invalid service paths on socket lookups ([#3241](https://github.com/feathersjs/feathers/issues/3241)) ([c397ab3](https://github.com/feathersjs/feathers/commit/c397ab3a0cd184044ae4f73540549b30a396821c))
+- resolve issue with typing of the readonly fields ([1ca8f77](https://github.com/shiftsmartinc/feathers/commit/1ca8f775b2f4bf7437d34238fed0153fa93dfb14))
 
+### Features
 
+- add "schema" option to cli service generator ([b06d294](https://github.com/shiftsmartinc/feathers/commit/b06d2945b6f98d8b52be08c12f5d32eef8edf850))
+- add cli options for auth and db ([453268c](https://github.com/shiftsmartinc/feathers/commit/453268cc8938b1711eb1feadb97515487dce3c5a))
 
+# [5.1.0-beta.2](https://github.com/shiftsmartinc/feathers/compare/v5.1.0-beta.1...v5.1.0-beta.2) (2023-08-17)
 
+### Features
+
+- add "singluar" option to skip pluralization of the service name ([bf9e1ba](https://github.com/shiftsmartinc/feathers/commit/bf9e1bac936d944674a448e8b33365e0f34ab38b))
+
+**Note:** Version bump only for package @shiftsmartinc/feathers
+
+# [5.1.0-beta.0](https://github.com/shiftsmartinc/feathers/compare/v5.1.0-beta.1...v5.1.0-beta.0) (2023-08-09)
+
+**Note:** Version bump only for package @shiftsmartinc/feathers
+
+## [5.0.8](https://github.com/feathersjs/feathers/compare/v5.0.7...v5.0.8) (2023-07-19)
+
+### Bug Fixes
+
+- add missing word ([#3237](https://github.com/feathersjs/feathers/issues/3237)) ([9a32184](https://github.com/feathersjs/feathers/commit/9a321848767e31176660d6937f8fa6d83ba215bd))
+- **transport-commons:** Handle invalid service paths on socket lookups ([#3241](https://github.com/feathersjs/feathers/issues/3241)) ([c397ab3](https://github.com/feathersjs/feathers/commit/c397ab3a0cd184044ae4f73540549b30a396821c))
 
 ## [5.0.7](https://github.com/feathersjs/feathers/compare/v5.0.6...v5.0.7) (2023-07-14)
 
-
 ### Bug Fixes
 
-* **core:** Ensure .service does not access Object properties ([#3235](https://github.com/feathersjs/feathers/issues/3235)) ([c0b670a](https://github.com/feathersjs/feathers/commit/c0b670ac4c7bf145e36b59ea89d1387b5514c237))
-* **generators:** Fix channel/service configuration order for Koa based apps ([580344e](https://github.com/feathersjs/feathers/commit/580344e96fe8a2f17fd53476af5a0c7ddefac0b6))
-* **koa:** Ensure .teardown works without a server ([#3234](https://github.com/feathersjs/feathers/issues/3234)) ([818572d](https://github.com/feathersjs/feathers/commit/818572df98456bc3e1a300e879329aa8f849be64))
-
-
-
-
+- **core:** Ensure .service does not access Object properties ([#3235](https://github.com/feathersjs/feathers/issues/3235)) ([c0b670a](https://github.com/feathersjs/feathers/commit/c0b670ac4c7bf145e36b59ea89d1387b5514c237))
+- **generators:** Fix channel/service configuration order for Koa based apps ([580344e](https://github.com/feathersjs/feathers/commit/580344e96fe8a2f17fd53476af5a0c7ddefac0b6))
+- **koa:** Ensure .teardown works without a server ([#3234](https://github.com/feathersjs/feathers/issues/3234)) ([818572d](https://github.com/feathersjs/feathers/commit/818572df98456bc3e1a300e879329aa8f849be64))
 
 ## [5.0.6](https://github.com/feathersjs/feathers/compare/v5.0.5...v5.0.6) (2023-06-15)
 

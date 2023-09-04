@@ -1,5 +1,5 @@
 {
-  "name": "@feathersjs/express",
+  "name": "@shiftsmartinc/feathers-express",
   "description": "Feathers Express framework bindings and REST provider",
   "version": "5.0.8",
   "homepage": "https://feathersjs.com",
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/feathersjs/feathers.git",
+    "url": "git://github.com/shiftsmartinc/feathers.git",
     "directory": "packages/express"
   },
   "author": {
@@ -66,10 +66,9 @@
   },
   "devDependencies": {
     "@feathersjs/authentication-local": "^5.0.8",
-    "@feathersjs/tests": "^5.0.8",
-    "@types/lodash": "^4.14.195",
+    "@types/lodash": "^4.14.196",
     "@types/mocha": "^10.0.1",
-    "@types/node": "^20.4.2",
+    "@types/node": "^20.4.9",
     "axios": "^1.4.0",
     "lodash": "^4.17.21",
     "mocha": "^10.2.0",

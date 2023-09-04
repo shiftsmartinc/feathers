@@ -1,5 +1,5 @@
 {
-  "name": "create-feathers",
+  "name": "@shiftsmartinc/create-feathers",
   "description": "Create a new Feathers application",
   "version": "5.0.8",
   "homepage": "https://feathersjs.com",
@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/feathersjs/feathers.git"
+    "url": "git://github.com/shiftsmartinc/feathers.git"
   },
   "author": {
     "name": "Feathers contributors",

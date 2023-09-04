@@ -1,4 +1,4 @@
-import { generator, toFile, after, prepend } from '@feathershq/pinion'
+import { generator, toFile, before } from '@feathershq/pinion'
 import { fileExists, injectSource, renderSource } from '../../commons'
 import { ServiceGeneratorContext } from '../index'
 
@@ -13,7 +13,10 @@ export const template = ({
   relative,
   schema,
   fileName
-}: ServiceGeneratorContext) => /* ts */ `// For more information about this file see https://dove.feathersjs.com/guides/cli/service.html
+}: ServiceGeneratorContext) => /* ts */ `/**
+ * @external https://feathersjs.com/guides/cli/service.html
+ * @description For more information about this file see the link above.
+ */
 ${authentication || isEntityService ? `import { authenticate } from '@feathersjs/authentication'` : ''}
 ${
   schema
@@ -44,19 +47,23 @@ export const ${camelName}Path = '${path}'
 export const ${camelName}Methods = ['find', 'get', 'create', 'patch', 'remove'] as const`
 }
 
-export * from './${fileName}.class'
-${schema ? `export * from './${fileName}.schema'` : ''}
+/** TODO: Confirm these are not required [PDF 2023-07-28] */
+// export * from './${fileName}.class'
+// ${schema ? `export * from './${fileName}.schema'` : ''}
 
-// A configure function that registers the service and its hooks via \`app.configure\`
+/** 
+ * @description A configure function that registers the service and its hooks via \`app.configure\` 
+ */
 export const ${camelName} = (app: Application) => {
-  // Register our service on the Feathers application
+  /** Register our service on the Feathers application */
   app.use(${camelName}Path, new ${className}(getOptions(app)), {
-    // A list of all methods this service exposes externally
+    /** A list of all methods this service exposes externally */
     methods: ${camelName}Methods,
-    // You can add additional custom events to be sent to clients here
+    /** You can add additional custom events to be sent to clients here */
     events: []
   })
-  // Initialize hooks
+  /** Initialize hooks */
+  // @ts-expect-error [ENG-770] FIXME: Types of property 'update' are incompatible: NullableId vs AdapterId
   app.service(${camelName}Path).hooks({
     around: {
       all: [${
@@ -121,7 +128,9 @@ export const ${camelName} = (app: Application) => {
   })
 }
 
-// Add this service to the service type index
+/** 
+ * @description Adds this service to the service type index 
+ */
 declare module '${relative}/declarations' {
   interface ServiceTypes {
     [${camelName}Path]: ${className}
@@ -148,14 +157,14 @@ export const generate = (ctx: ServiceGeneratorContext) =>
       injectSource<ServiceGeneratorContext>(
         ({ camelName, folder, fileName }) =>
           `import { ${camelName} } from './${folder.join('/')}/${fileName}'`,
-        prepend(),
+        before('// #endregion Service Imports'),
         toServiceIndex
       )
     )
     .then(
       injectSource<ServiceGeneratorContext>(
         ({ camelName }) => `  app.configure(${camelName})`,
-        after('export const services'),
+        before('// #endregion Service Registration'),
         toServiceIndex
       )
     )

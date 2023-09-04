@@ -4,9 +4,11 @@ import { injectSource, renderSource } from '../../commons'
 import { mkdir } from 'fs/promises'
 import path from 'path'
 
-const template = ({
-  database
-}: ConnectionGeneratorContext) => /* ts */ `// For more information about this file see https://dove.feathersjs.com/guides/cli/databases.html
+const template = ({ database }: ConnectionGeneratorContext) => /* ts */ `/**
+ * @external https://feathersjs.com/guides/cli/databases.html
+ * @description For more information about this file see the link above.
+ */
+
 import knex from 'knex'
 import type { Knex } from 'knex'
 import type { Application } from './declarations'
@@ -25,11 +27,11 @@ export const ${database} = (app: Application) => {
 }
 `
 
-const knexfile = ({
-  lib,
-  language,
-  database
-}: ConnectionGeneratorContext) => /* ts */ `// For more information about this file see https://dove.feathersjs.com/guides/cli/databases.html
+const knexfile = ({ lib, language, database }: ConnectionGeneratorContext) => /* ts */ `/**
+ * @external https://feathersjs.com/guides/cli/databases.html
+ * @description For more information about this file see the link above.
+ */
+
 import { app } from './${lib}/app'
 
 // Load our database connection info from the app configuration

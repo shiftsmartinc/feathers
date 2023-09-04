@@ -5,22 +5,27 @@ import { ServiceGeneratorContext } from '../index'
 const sharedTemplate = ({
   camelName,
   upperName,
+  singluarUpperName,
   className,
   fileName,
   relative,
   path
-}: ServiceGeneratorContext) => /* ts */ `// For more information about this file see https://dove.feathersjs.com/guides/cli/service.shared.html
+}: ServiceGeneratorContext) => /* ts */ `/**
+ * @external https://feathersjs.com/guides/cli/service.shared.html
+ * @description For more information about this file see the link above.
+ */
+
 import type { Params } from '@feathersjs/feathers'
 import type { ClientApplication } from '${relative}/client'
 import type {
-  ${upperName},
+  ${singluarUpperName},
   ${upperName}Data,
   ${upperName}Patch,
   ${upperName}Query,
   ${className}
 } from './${fileName}.class'
 
-export type { ${upperName}, ${upperName}Data, ${upperName}Patch, ${upperName}Query }
+export type { ${singluarUpperName}, ${upperName}Data, ${upperName}Patch, ${upperName}Query }
 
 export type ${upperName}ClientService = Pick<
   ${className}<Params<${upperName}Query>>,

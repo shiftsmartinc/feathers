@@ -1,5 +1,5 @@
 {
-  "name": "@feathersjs/koa",
+  "name": "@shiftsmartinc/feathers-koa",
   "description": "Feathers KoaJS framework bindings and REST provider",
   "version": "5.0.8",
   "homepage": "https://feathersjs.com",
@@ -12,7 +12,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/feathersjs/feathers.git",
+    "url": "git://github.com/shiftsmartinc/feathers.git",
     "directory": "packages/koa"
   },
   "author": {
@@ -55,7 +55,7 @@
     "@feathersjs/feathers": "^5.0.8",
     "@feathersjs/transport-commons": "^5.0.8",
     "@koa/cors": "^4.0.0",
-    "@types/koa": "^2.13.6",
+    "@types/koa": "^2.13.8",
     "@types/koa-qs": "^2.0.0",
     "@types/koa-static": "^4.0.2",
     "@types/koa__cors": "^4.0.0",
@@ -68,10 +68,9 @@
   "devDependencies": {
     "@feathersjs/authentication-local": "^5.0.8",
     "@feathersjs/memory": "^5.0.8",
-    "@feathersjs/tests": "^5.0.8",
     "@types/koa-compose": "^3.2.5",
     "@types/mocha": "^10.0.1",
-    "@types/node": "^20.4.2",
+    "@types/node": "^20.4.9",
     "axios": "^1.4.0",
     "mocha": "^10.2.0",
     "shx": "^0.3.4",

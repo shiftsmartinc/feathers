@@ -2,6 +2,7 @@ import _ from 'lodash'
 import fs, { Dirent } from 'fs'
 import { readdir } from 'fs/promises'
 import { join as pathJoin, resolve as pathResolve } from 'node:path'
+import pluralize from 'pluralize'
 import { generator, runGenerator, runGenerators, prompt } from '@feathershq/pinion'
 
 import {
@@ -52,6 +53,14 @@ export interface ServiceGeneratorContext extends FeathersBaseContext {
    */
   kebabPath: string
   /**
+   * Singular version of the service name
+   */
+  singluarCamelName: string
+  /**
+   * Singular version of the service name starting with an uppercase letter
+   */
+  singluarUpperName: string
+  /**
    * Indicates how many file paths we should go up to import other things (e.g. `../../`)
    */
   relative: string
@@ -75,6 +84,10 @@ export interface ServiceGeneratorContext extends FeathersBaseContext {
    * The authentication strategies (if it is an entity service)
    */
   authStrategies: string[]
+  /**
+   * Do not pluralize the input service name, leave as-is
+   */
+  singluar?: boolean
   /**
    * The root directory of user-specified custom templates
    */
@@ -195,11 +208,15 @@ export const generate = (ctx: ServiceGeneratorArguments) =>
       )
     )
     .then(async (ctx): Promise<ServiceGeneratorContext> => {
-      const { name, path, type, authStrategies = [] } = ctx
+      const { path, type, authStrategies = [], singluar } = ctx
+      const name = !singluar ? pluralize(ctx.name) : ctx.name
+
       const kebabName = _.kebabCase(name)
       const camelName = _.camelCase(name)
       const upperName = _.upperFirst(camelName)
       const className = `${upperName}Service`
+      const singluarCamelName = pluralize.singular(name)
+      const singluarUpperName = _.upperFirst(singluarCamelName)
 
       const folder = path.split('/').filter((el) => el !== '')
       const relative = ['', ...folder].map(() => '..').join('/')
@@ -216,6 +233,8 @@ export const generate = (ctx: ServiceGeneratorArguments) =>
         className,
         kebabName,
         camelName,
+        singluarCamelName,
+        singluarUpperName,
         kebabPath,
         relative,
         authStrategies,

@@ -2,12 +2,19 @@ import { generator, toFile } from '@feathershq/pinion'
 import { renderSource } from '../../commons'
 import { AppGeneratorContext } from '../index'
 
-const template =
-  ({}: AppGeneratorContext) => /* ts */ `// For more information about this file see https://dove.feathersjs.com/guides/cli/application.html#configure-functions
+const template = ({}: AppGeneratorContext) => /* ts */ `/**
+ * @external https://feathersjs.com/guides/cli/application.html#configure-functions
+ * @description For more information about this file see the link above.
+ */
 import type { Application } from '../declarations'
 
+// #region Service Imports
+// #endregion Service Imports
+
 export const services = (app: Application) => {
-  // All services will be registered here
+  // #region Service Registration
+  // These services will be registered with the application.
+  // #endregion Service Registration
 }
 `
 

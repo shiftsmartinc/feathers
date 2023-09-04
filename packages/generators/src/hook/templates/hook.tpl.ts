@@ -2,10 +2,11 @@ import { generator, toFile } from '@feathershq/pinion'
 import { HookGeneratorContext } from '../index'
 import { renderSource } from '../../commons'
 
-const aroundTemplate = ({
-  camelName,
-  name
-}: HookGeneratorContext) => /* ts */ `// For more information about this file see https://dove.feathersjs.com/guides/cli/hook.html
+const aroundTemplate = ({ camelName, name }: HookGeneratorContext) => /* ts */ `/**
+ * @external https://feathersjs.com/guides/cli/hook.html
+ * @description For more information about this file see the link above.
+ */
+
 import type { HookContext, NextFunction } from '../declarations'
 
 export const ${camelName} = async (context: HookContext, next: NextFunction) => {
@@ -14,10 +15,11 @@ export const ${camelName} = async (context: HookContext, next: NextFunction) => 
 }
 `
 
-const regularTemplate = ({
-  camelName,
-  name
-}: HookGeneratorContext) => /* ts */ `// For more information about this file see https://dove.feathersjs.com/guides/cli/hook.html
+const regularTemplate = ({ camelName, name }: HookGeneratorContext) => /* ts */ `/**
+ * @external https://feathersjs.com/guides/cli/hook.html
+ * @description For more information about this file see the link above.
+ */
+
 import type { HookContext } from '../declarations'
 
 export const ${camelName} = async (context: HookContext) => {

@@ -2,10 +2,11 @@ import { generator, toFile } from '@feathershq/pinion'
 import { renderSource } from '../../commons'
 import { AppGeneratorContext } from '../index'
 
-const tsKoaApp = ({
-  transports,
-  schema
-}: AppGeneratorContext) => /* ts */ `// For more information about this file see https://dove.feathersjs.com/guides/cli/application.html
+const tsKoaApp = ({ transports, schema }: AppGeneratorContext) => /* ts */ `/**
+ * @external https://feathersjs.com/guides/cli/application.html
+ * @description For more information about this file see the link above.
+ */
+
 import { feathers } from '@feathersjs/feathers'
 import configuration from '@feathersjs/configuration'
 import {
@@ -64,10 +65,11 @@ app.hooks({
 export { app }
 `
 
-const tsExpressApp = ({
-  transports,
-  schema
-}: AppGeneratorContext) => /* ts */ `// For more information about this file see https://dove.feathersjs.com/guides/cli/application.html
+const tsExpressApp = ({ transports, schema }: AppGeneratorContext) => /* ts */ `/**
+ * @external https://feathersjs.com/guides/cli/application.html
+ * @description For more information about this file see the link above.
+ */
+
 import { feathers } from '@feathersjs/feathers'
 import express, {
   rest, json, urlencoded, cors,

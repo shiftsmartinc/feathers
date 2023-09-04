@@ -3,21 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.9-beta.2](https://github.com/shiftsmartinc/feathers/compare/v5.0.9-beta.1...v5.0.9-beta.2) (2023-08-18)
+
+**Note:** Version bump only for package @shiftsmartinc/feathers-cli
+
+## [5.0.9-beta.1](https://github.com/shiftsmartinc/feathers/compare/v5.1.0-beta.3...v5.0.9-beta.1) (2023-08-18)
+
+**Note:** Version bump only for package @shiftsmartinc/feathers-cli
+
+# [5.1.0-beta.3](https://github.com/shiftsmartinc/feathers/compare/v5.1.0-beta.2...v5.1.0-beta.3) (2023-08-18)
+
+### Features
+
+- add "schema" option to cli service generator ([b06d294](https://github.com/shiftsmartinc/feathers/commit/b06d2945b6f98d8b52be08c12f5d32eef8edf850))
+- add cli options for auth and db ([453268c](https://github.com/shiftsmartinc/feathers/commit/453268cc8938b1711eb1feadb97515487dce3c5a))
+
+# [5.1.0-beta.2](https://github.com/shiftsmartinc/feathers/compare/v5.1.0-beta.1...v5.1.0-beta.2) (2023-08-17)
+
+### Features
+
+- add "singluar" option to skip pluralization of the service name ([bf9e1ba](https://github.com/shiftsmartinc/feathers/commit/bf9e1bac936d944674a448e8b33365e0f34ab38b))
+
+**Note:** Version bump only for package @shiftsmartinc/feathers-cli
+
+# [5.1.0-beta.0](https://github.com/shiftsmartinc/feathers/compare/v5.1.0-beta.1...v5.1.0-beta.0) (2023-08-09)
+
+**Note:** Version bump only for package @shiftsmartinc/feathers-cli
+
 ## [5.0.8](https://github.com/feathersjs/feathers/compare/v5.0.7...v5.0.8) (2023-07-19)
 
 **Note:** Version bump only for package @feathersjs/cli
 
-
-
-
-
 ## [5.0.7](https://github.com/feathersjs/feathers/compare/v5.0.6...v5.0.7) (2023-07-14)
 
 **Note:** Version bump only for package @feathersjs/cli
-
-
-
-
 
 ## [5.0.6](https://github.com/feathersjs/feathers/compare/v5.0.5...v5.0.6) (2023-06-15)
 

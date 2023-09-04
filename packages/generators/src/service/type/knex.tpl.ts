@@ -6,7 +6,11 @@ const migrationTemplate = ({
   kebabPath,
   authStrategies,
   isEntityService
-}: ServiceGeneratorContext) => /* ts */ `// For more information about this file see https://dove.feathersjs.com/guides/cli/knexfile.html
+}: ServiceGeneratorContext) => /* ts */ `/**
+ * @external https://feathersjs.com/guides/cli/knexfile.html
+ * @description For more information about this file see the link above.
+ */
+
 import type { Knex } from 'knex'
 
 export async function up(knex: Knex): Promise<void> {
@@ -38,11 +42,16 @@ export async function down(knex: Knex): Promise<void> {
 export const template = ({
   className,
   upperName,
+  singluarUpperName,
   feathers,
   schema,
   fileName,
   relative
-}: ServiceGeneratorContext) => /* ts */ `// For more information about this file see https://dove.feathersjs.com/guides/cli/service.class.html#database-services
+}: ServiceGeneratorContext) => /* ts */ `/**
+ * @external https://feathersjs.com/guides/cli/service.class.html#database-services
+ * @description For more information about this file see the link above.
+ */
+
 import type { Params } from '@feathersjs/feathers'
 import { KnexService } from '@feathersjs/knex'
 import type { KnexAdapterParams, KnexAdapterOptions } from '@feathersjs/knex'
@@ -51,7 +60,7 @@ import type { Application } from '${relative}/declarations'
 ${
   schema
     ? `import type {
-  ${upperName},
+  ${singluarUpperName},
   ${upperName}Data,
   ${upperName}Patch,
   ${upperName}Query
@@ -65,14 +74,14 @@ type ${upperName}Query = any
 `
 }
 
-export type { ${upperName}, ${upperName}Data, ${upperName}Patch, ${upperName}Query }
+export type { ${singluarUpperName}, ${upperName}Data, ${upperName}Patch, ${upperName}Query }
 
 export interface ${upperName}Params extends KnexAdapterParams<${upperName}Query> {
 }
 
 // By default calls the standard Knex adapter service methods but can be customized with your own functionality.
 export class ${className}<ServiceParams extends Params = ${upperName}Params>
-  extends KnexService<${upperName}, ${upperName}Data, ${upperName}Params, ${upperName}Patch> {
+  extends KnexService<${singluarUpperName}, ${upperName}Data, ${upperName}Params, ${upperName}Patch> {
 }
 
 export const getOptions = (app: Application): KnexAdapterOptions => {
