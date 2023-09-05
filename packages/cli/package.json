@@ -52,7 +52,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@shiftsmartinc/feathers-generators": "file:../../generators/lib",
+    "@shiftsmartinc/feathers-generators": "file:packages/generators",
     "chalk": "^4.0.1",
     "commander": "^11.0.0"
   },

@@ -256,30 +256,29 @@ async function mergeCustomTemplates(
   ctx: ServiceGeneratorContext,
   templateType: 'templates' | 'type'
 ): Promise<string> {
-  const templatesRoot = ctx.templates
-  if(!templatesRoot) {
+  if(!ctx.templates) {
     return __dirname
   }
 
-  const templatesDirExists = fileExists(templatesRoot, templateType)
+  const templatesRoot = pathJoin(ctx.cwd, ctx.templates, 'service', templateType)
+
+  const templatesDirExists = fileExists(templatesRoot)
   if(!templatesDirExists) {
     return __dirname
   }
 
-  const tmp = fs.mkdtempSync('tmp-service-')
+  const tmp = fs.mkdtempSync(pathResolve(__dirname, '../', '_custom-templates'))
   const tmpTemplates = pathJoin(tmp, templateType)
 
   await copyFiles(fromFile(__dirname, templateType), toFile(tmpTemplates))(ctx)
 
-  const customFiles = await readdir(pathJoin(templatesRoot, templateType), { withFileTypes: true })
+  const customFiles = await readdir(templatesRoot, { withFileTypes: true })
 
   customFiles
     .filter((file: Dirent) => file.isFile())
     .forEach(async ({ name }: Dirent) => {
-      const file = pathResolve(templatesRoot, templateType, name)
-
-      // TODO: fix this one failing
-      fs.copyFileSync(file, tmpTemplates)
+      const file = pathResolve(templatesRoot, name)
+      fs.copyFileSync(file, pathJoin(tmpTemplates, name))
     })
 
   return tmp
