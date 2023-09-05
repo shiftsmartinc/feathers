@@ -10,11 +10,11 @@ import {
   getCallable,
   renderTemplate,
   inject,
-  Location
+  Location,
+  runGenerators,
 } from '@feathershq/pinion'
 import * as ts from 'typescript'
 import prettier, { Options as PrettierOptions } from 'prettier'
-import path from 'path'
 
 export const { version } = JSON.parse(fs.readFileSync(join(__dirname, '..', 'package.json')).toString())
 
@@ -93,6 +93,15 @@ export interface FeathersBaseContext extends PinionContext {
    * Used for installing development dependencies during testing.
    */
   dependencyVersions?: DependencyVersions
+  /**
+   * The type of the generator specified with the 'generate' command. (e.g., service, hook, etc.)
+   */
+  generatorName: string
+  /**
+   * The folder where custom templates for the generator are stored.
+   * It can be given as an argument in the CLI, or it will default to the local directory '_templates'
+   */
+  customTemplatesRoot?: string;
 }
 
 /**
@@ -117,7 +126,7 @@ export const initializeBaseContext =
     Promise.resolve(ctx)
       .then(loadJSON(fromFile('package.json'), (pkg) => ({ pkg }), {}))
       .then(
-        loadJSON(path.join(__dirname, '..', 'package.json'), (pkg: PackageJson) => ({
+        loadJSON(join(__dirname, '..', 'package.json'), (pkg: PackageJson) => ({
           dependencyVersions: {
             ...pkg.devDependencies,
             ...ctx.dependencyVersions,
@@ -320,3 +329,37 @@ export const localTemplate = (authStrategies: string[], content: string, alt = '
  */
 export const oauthTemplate = (authStrategies: string[], content: string) =>
   authStrategies.filter((s) => s !== 'local').length > 0 ? content : ''
+
+/**
+ * Run all generators from the templates folder specified as param
+ * but overwrites with custom templates if exist
+ *
+ * @param pathParts The parts of the folder to run. Can be assembled dynamically based on context.
+ * @returns The context returned by all generators merged together
+ */
+export const runGeneratorsWithCustomTemplates =
+<C extends FeathersBaseContext>() =>
+async (ctx: C) => {
+  const defaultTemplatesPath = join(__dirname, ctx.generatorName, 'templates')
+  console.log("🚀 ~ file: commons.ts:344 ~ defaultTemplatesPath:", defaultTemplatesPath)
+  const customTemplatesPath = join(process.cwd(), ctx.customTemplatesRoot, ctx.generatorName, 'templates')
+  console.log("🚀 ~ file: commons.ts:346 ~ customTemplatesPath:", customTemplatesPath)
+
+  try {
+    await runGenerators(defaultTemplatesPath)(ctx);
+  } catch(error) {
+    console.error("Error generating default templates", error)
+    
+  }
+  // const [compiledFiles, tsFiles] = await Promise.all([
+  //   listFiles(defaultTemplatesPath, '.tpl.js'),
+  //   listFiles(defaultTemplatesPath, '.tpl.ts')
+  // ])
+  // const files = compiledFiles.length ? compiledFiles : tsFiles
+
+  // for (const file of files.sort()) {
+  //   await runGenerator(file)(ctx);
+  // }
+
+  return ctx;
+}

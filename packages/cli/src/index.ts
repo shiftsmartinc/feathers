@@ -1,5 +1,5 @@
 import chalk from 'chalk'
-import { Command } from 'commander'
+import { Command, Option } from 'commander'
 import { dirname } from 'path'
 import {
   generator,
@@ -12,10 +12,14 @@ import {
 export * from 'commander'
 export { chalk }
 
+export const LOCAL_TEMPLATES_DIR = '_templates'
+
 export const commandRunner = (name: string) => async (options: any) => {
   const folder = dirname(require.resolve('@shiftsmartinc/feathers-generators'))
   const ctx = getContext<FeathersBaseContext>({
-    ...options
+    ...options,
+    customTemplatesRoot: options.templates || LOCAL_TEMPLATES_DIR,
+    generatorName: name
   })
 
   await generator(ctx)
@@ -74,6 +78,8 @@ generate
   .command('authentication')
   .description('Add authentication to the application')
   .action(commandRunner('authentication'))
+
+generate.commands.forEach(c => c.addOption(new Option('--templates <customTemplates>', 'Path to a custom templates folder (optional)')))
 
 generate.description(
   `Run a generator. Currently available: \n  ${generate.commands
