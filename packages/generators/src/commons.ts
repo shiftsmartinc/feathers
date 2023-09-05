@@ -1,5 +1,5 @@
 import fs from 'fs'
-import { join } from 'path'
+import { join, resolve } from 'path'
 import { PackageJson } from 'type-fest'
 import { readFile, writeFile } from 'fs/promises'
 import {
@@ -11,10 +11,13 @@ import {
   renderTemplate,
   inject,
   Location,
-  runGenerators,
+  copyFiles,
+  toFile,
+  runModule,
 } from '@feathershq/pinion'
 import * as ts from 'typescript'
 import prettier, { Options as PrettierOptions } from 'prettier'
+import { listFiles } from '@feathershq/pinion/lib/utils'
 
 export const { version } = JSON.parse(fs.readFileSync(join(__dirname, '..', 'package.json')).toString())
 
@@ -341,12 +344,17 @@ export const runGeneratorsWithCustomTemplates =
 <C extends FeathersBaseContext>() =>
 async (ctx: C) => {
   const defaultTemplatesPath = join(__dirname, ctx.generatorName, 'templates')
-  console.log("🚀 ~ file: commons.ts:344 ~ defaultTemplatesPath:", defaultTemplatesPath)
-  const customTemplatesPath = join(process.cwd(), ctx.customTemplatesRoot, ctx.generatorName, 'templates')
-  console.log("🚀 ~ file: commons.ts:346 ~ customTemplatesPath:", customTemplatesPath)
+  const customTemplatesLocation = join(process.cwd(), ctx.customTemplatesRoot, ctx.generatorName, 'templates')
 
+  const tmp = fs.mkdtempSync(resolve(__dirname, '../', '_custom-templates'))
+  const tmpCustomTemplates = join(tmp, 'templates')
+  await copyFiles(fromFile(customTemplatesLocation), toFile(tmpCustomTemplates))(ctx)
   try {
-    await runGenerators(defaultTemplatesPath)(ctx);
+    const tsFiles = await listFiles(defaultTemplatesPath, '.tpl.ts');
+
+    for (const file of tsFiles.sort()) {
+      await runModule(file, ctx)
+    }
   } catch(error) {
     console.error("Error generating default templates", error)
     
