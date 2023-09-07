@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import pluralize from 'pluralize'
-import { generator, runGenerator, prompt } from '@feathershq/pinion'
+import { generator, prompt } from '@feathershq/pinion'
 
 import {
   checkPreconditions,
@@ -9,7 +9,8 @@ import {
   fileExists,
   getDatabaseAdapter,
   initializeBaseContext,
-  runGeneratorsWithCustomTemplates
+  runGeneratorsWithCustomTemplates,
+  runGeneratorWithCustomTemplate
 } from '../commons'
 import chalk from 'chalk'
 
@@ -228,4 +229,4 @@ export const generate = (ctx: ServiceGeneratorArguments) =>
       }
     })
     .then(runGeneratorsWithCustomTemplates<ServiceGeneratorContext>())
-    .then(runGenerator<ServiceGeneratorContext>(__dirname, 'type', ({ type }) => `${type}.tpl`))
+    .then(runGeneratorWithCustomTemplate<ServiceGeneratorContext>(__dirname, 'type', ({ type }) => `${type}.tpl`))

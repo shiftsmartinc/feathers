@@ -1,6 +1,6 @@
-import { generator, prompt, runGenerators } from '@feathershq/pinion'
+import { generator, prompt } from '@feathershq/pinion'
 import _ from 'lodash'
-import { checkPreconditions, FeathersBaseContext, initializeBaseContext } from '../commons'
+import { checkPreconditions, FeathersBaseContext, initializeBaseContext, runGeneratorsWithCustomTemplates } from '../commons'
 
 export interface HookGeneratorContext extends FeathersBaseContext {
   name: string
@@ -44,4 +44,4 @@ export const generate = (ctx: HookGeneratorContext) =>
         camelName
       }
     })
-    .then(runGenerators(__dirname, 'templates'))
+    .then(runGeneratorsWithCustomTemplates())
