@@ -344,32 +344,52 @@ export const oauthTemplate = (authStrategies: string[], content: string) =>
 export const runGeneratorsWithCustomTemplates =
 <C extends FeathersBaseContext>(templatesFolder: string = 'templates') =>
 async (ctx: C) => {
-  const defaultTemplatesLocation = resolve(__dirname, ctx.generatorName, templatesFolder)
-  const customTemplatesLocation = resolve(process.cwd(), ctx.customTemplatesRoot, ctx.generatorName, templatesFolder)
-
-  /** Used for tracking which custom templates were generated */
-  const customTemplatesParsed: {[key: string]: boolean} = {}
-
   // Generate custom templates first
-  const customTemplates = await listFiles(customTemplatesLocation, '.tpl.js')
-  for (const template of customTemplates.sort()) {
-    await runGenerator(template)(ctx)
-    const fileName = parse(template).name
-    customTemplatesParsed[fileName] = true
-  }
-  ctx = addTrace(ctx, 'runGeneratorsWithCustomTemplates', { customTemplates })
-  
+  const customTemplatesLocation = resolve(process.cwd(), ctx.customTemplatesRoot, ctx.generatorName, templatesFolder)
+  let generatedCustomTemplates: string[]
+  ({ ctx, generatedTemplatesNames: generatedCustomTemplates } = await runGeneratorsWithSkippables(ctx, customTemplatesLocation, []))
+
   // Generate the default templates, skipping those generated from custom ones.
-  const defaultTemplates = await listFiles(defaultTemplatesLocation, '.tpl.js')
-  for (const template of defaultTemplates.sort()) {
+  const defaultTemplatesLocation = resolve(__dirname, ctx.generatorName, templatesFolder)
+  return (await runGeneratorsWithSkippables(ctx, defaultTemplatesLocation, generatedCustomTemplates)).ctx
+}
+
+/**
+ * Runs the generators on all js files from the specified directory
+ * skipping the templates given as param
+ * 
+ * @param ctx The current context
+ * @param dir The source directory 
+ * @param skipTemplates Array of template names that will be skipped 
+ * @returns Array of file names for successfully generated templates
+ */
+export const runGeneratorsWithSkippables = async <C extends FeathersBaseContext>(ctx: C, dir: string, skipTemplates: string[] = []) => {
+  if (!fileExists(dir)) {
+    return { ctx }
+  }
+  
+  const generatedTemplatesNames: string[] = []
+  const templates = await listFiles(dir, '.tpl.js')
+  for (const template of templates.sort()) {
     const fileName = parse(template).name
-    if(!customTemplatesParsed[fileName]) {
+    
+    if (skipTemplates.includes(fileName)) {
+      continue
+    }
+
+    try {
       await runGenerator(template)(ctx)
+      generatedTemplatesNames.push(fileName)
+    } catch (error) {
+      console.error(`Failed to run generator for ${fileName}`)
     }
   }
-  ctx = addTrace(ctx, 'runGeneratorsWithCustomTemplates', { customTemplates })
 
-  return ctx
+  if (generatedTemplatesNames.length) {
+    ctx = addTrace(ctx, 'runGeneratorsWithCustomTemplates', { templates })
+  }
+
+  return { ctx, generatedTemplatesNames }
 }
 
 /**
