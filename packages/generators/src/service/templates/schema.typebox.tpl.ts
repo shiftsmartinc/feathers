@@ -31,7 +31,7 @@ import { dataValidator, queryValidator } from '${relative}/${
   fileExists(cwd, lib, 'schemas') ? 'schemas/' : '' /** This is for legacy backwards compatibility */
 }validators'
 
-${schema ? `import { defaultReadonlyFields } from '../configs'`: ''}
+${schema ? `import { defaultReadonlyFields } from '../configs'` : ''}
 import { ${singularCamelName} as ${camelName}Schema } from './${fileName}.schema.gen'
 export { ${camelName}Schema };
 export type ${singularUpperName} = Static<typeof ${camelName}Schema>
@@ -47,7 +47,9 @@ export const ${camelName}ExternalResolver = resolve<${singularUpperName}, HookCo
   )}  
 })
 
-const ${camelName}ReadonlyFields: (keyof ${singularUpperName})[] = ${schema? '[...defaultReadonlyFields]' : '[]'}
+const ${camelName}ReadonlyFields: (keyof ${singularUpperName})[] = ${
+  schema ? '[...defaultReadonlyFields]' : '[]'
+}
 
 /** 
  * @title: ${camelName}DataSchema
@@ -89,7 +91,9 @@ export const ${camelName}PatchResolver = resolve<${singularUpperName}, HookConte
  * @title: ${camelName}QueryProperties
  * @description Schema for allowed query properties 
  */
-export const ${camelName}QueryProperties = Type.Omit(${camelName}Schema, ${type === 'mongodb' ? `['_id']` : '[]'}) ${
+export const ${camelName}QueryProperties = Type.Omit(${camelName}Schema, ${
+  type === 'mongodb' ? `['_id']` : '[]'
+}) ${
   isEntityService
     ? `& Type.Pick(${camelName}Schema, [
   ${authStrategies.map((name) => (name === 'local' ? `'email'` : `'${name}Id'`)).join(', ')}
