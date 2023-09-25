@@ -15,7 +15,6 @@ export const template = ({
  */
 
 import type { Id, NullableId, Params, ServiceInterface } from '@feathersjs/feathers'
-
 import type { Application } from '${relative}/declarations'
 ${
   schema
@@ -50,20 +49,20 @@ export class ${className}<ServiceParams extends ${upperName}Params = ${upperName
   constructor (public options: ${className}Options) {
   }
 
-  async find (_params?: ServiceParams): Promise<${upperName}[]> {
+  async find (_params?: ServiceParams): Promise<${singularUpperName}[]> {
     return []
   }
 
-  async get (id: Id, _params?: ServiceParams): Promise<${upperName}> {
+  async get (id: Id, _params?: ServiceParams): Promise<${singularUpperName}> {
     return {
       id: 0,
       text: \`A new message with ID: \${id}!\`
     }
   }
 
-  async create (data: ${upperName}Data, params?: ServiceParams): Promise<${upperName}>
-  async create (data: ${upperName}Data[], params?: ServiceParams): Promise<${upperName}[]>
-  async create (data: ${upperName}Data|${upperName}Data[], params?: ServiceParams): Promise<${upperName}|${upperName}[]> {
+  async create (data: ${upperName}Data, params?: ServiceParams): Promise<${singularUpperName}>
+  async create (data: ${upperName}Data[], params?: ServiceParams): Promise<${singularUpperName}[]>
+  async create (data: ${upperName}Data|${upperName}Data[], params?: ServiceParams): Promise<${singularUpperName}|${singularUpperName}[]> {
     if (Array.isArray(data)) {
       return Promise.all(data.map(current => this.create(current, params)));
     }
@@ -75,14 +74,14 @@ export class ${className}<ServiceParams extends ${upperName}Params = ${upperName
   }
 
   // This method has to be added to the 'methods' option to make it available to clients
-  async update (id: NullableId, data: ${upperName}Data, _params?: ServiceParams): Promise<${upperName}> {
+  async update (id: NullableId, data: ${upperName}Data, _params?: ServiceParams): Promise<${singularUpperName}> {
     return {
       id: 0,
       ...data
     }
   }
 
-  async patch (id: NullableId, data: ${upperName}Patch, _params?: ServiceParams): Promise<${upperName}> {
+  async patch (id: NullableId, data: ${upperName}Patch, _params?: ServiceParams): Promise<${singularUpperName}> {
     return {
       id: 0,
       text: \`Fallback for \${id}\`,
@@ -90,7 +89,7 @@ export class ${className}<ServiceParams extends ${upperName}Params = ${upperName
     }
   }
 
-  async remove (id: NullableId, _params?: ServiceParams): Promise<${upperName}> {
+  async remove (id: NullableId, _params?: ServiceParams): Promise<${singularUpperName}> {
     return {
       id: 0,
       text: 'removed'

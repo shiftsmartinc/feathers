@@ -11,6 +11,7 @@ const template = ({
   relative,
   authStrategies,
   isEntityService,
+  schema,
   type,
   cwd,
   lib
@@ -19,18 +20,18 @@ const template = ({
  * @description For more information about this file see the link above.
  */
 
+import type { Static } from '@feathersjs/typebox'
+import type { HookContext } from '${relative}/declarations'
+
 import { resolve } from '@feathersjs/schema'
 import { Type, getValidator, querySyntax } from '@feathersjs/typebox'
-import type { Static } from '@feathersjs/typebox'
 ${localTemplate(authStrategies, `import { passwordHash } from '@feathersjs/authentication-local'`)}
 
-import type { HookContext } from '${relative}/declarations'
 import { dataValidator, queryValidator } from '${relative}/${
   fileExists(cwd, lib, 'schemas') ? 'schemas/' : '' /** This is for legacy backwards compatibility */
 }validators'
 
-/** Main data model schema */
-import { defaultReadonlyFields } from '../configs'
+${schema ? `import { defaultReadonlyFields } from '../configs'`: ''}
 import { ${singularCamelName} as ${camelName}Schema } from './${fileName}.schema.gen'
 export { ${camelName}Schema };
 export type ${singularUpperName} = Static<typeof ${camelName}Schema>
@@ -46,7 +47,7 @@ export const ${camelName}ExternalResolver = resolve<${singularUpperName}, HookCo
   )}  
 })
 
-const ${camelName}ReadonlyFields: (keyof ${singularUpperName})[] = [...defaultReadonlyFields]
+const ${camelName}ReadonlyFields: (keyof ${singularUpperName})[] = ${schema? '[...defaultReadonlyFields]' : '[]'}
 
 /** 
  * @title: ${camelName}DataSchema
@@ -73,11 +74,11 @@ export const ${camelName}DataResolver = resolve<${singularUpperName}, HookContex
  * @description Schema for updating existing entries 
  */
 export const ${camelName}PatchSchema = Type.Partial(
-  Type.Omit(${camelName}Schema, [
-    ${camelName}ReadonlyFields,
-  ]), {
+  Type.Omit(${camelName}Schema, ${camelName}ReadonlyFields), 
+  {
     $id: '${upperName}Patch'
-  })
+  },
+)
 export type ${upperName}Patch = Static<typeof ${camelName}PatchSchema>
 export const ${camelName}PatchValidator = getValidator(${camelName}PatchSchema, dataValidator)
 export const ${camelName}PatchResolver = resolve<${singularUpperName}, HookContext>({
@@ -88,9 +89,7 @@ export const ${camelName}PatchResolver = resolve<${singularUpperName}, HookConte
  * @title: ${camelName}QueryProperties
  * @description Schema for allowed query properties 
  */
-export const ${camelName}QueryProperties = Type.Omit(${camelName}Schema, [
-  '${type === 'mongodb' ? '_id' : ''}'
-]) ${
+export const ${camelName}QueryProperties = Type.Omit(${camelName}Schema, ${type === 'mongodb' ? `['_id']` : '[]'}) ${
   isEntityService
     ? `& Type.Pick(${camelName}Schema, [
   ${authStrategies.map((name) => (name === 'local' ? `'email'` : `'${name}Id'`)).join(', ')}

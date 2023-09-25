@@ -16,9 +16,7 @@ export const template = ({
  */
 
 import type { Params } from '@feathersjs/feathers'
-import { MongoDBService } from \'@feathersjs/mongodb\'
 import type { MongoDBAdapterParams, MongoDBAdapterOptions } from \'@feathersjs/mongodb\'
-
 import type { Application } from '${relative}/declarations'
 ${
   schema
@@ -37,6 +35,8 @@ type ${upperName}Query = any
 `
 }
 
+import { MongoDBService } from \'@feathersjs/mongodb\'
+
 export type { ${singularUpperName}, ${upperName}Data, ${upperName}Patch, ${upperName}Query }
 
 export interface ${upperName}Params extends MongoDBAdapterParams<${upperName}Query> {
@@ -53,8 +53,8 @@ export class ${className}<ServiceParams extends Params = ${upperName}Params>
 export const getOptions = (app: Application): MongoDBAdapterOptions => {
   return {
     id: 'uuid',
-    paginate: app.get('paginate'),
     Model: app.get('mongodbClient').then(db => db.collection('${kebabPath}'))
+    paginate: app.get('paginate'),
   }
 }
 `

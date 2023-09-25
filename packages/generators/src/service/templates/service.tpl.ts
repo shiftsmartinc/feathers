@@ -17,6 +17,8 @@ export const template = ({
  * @external https://feathersjs.com/guides/cli/service.html
  * @description For more information about this file see the link above.
  */
+import type { Application } from '${relative}/declarations'
+
 ${authentication || isEntityService ? `import { authenticate } from '@feathersjs/authentication'` : ''}
 ${
   schema
@@ -37,7 +39,6 @@ import {
     : ''
 }
 
-import type { Application } from '${relative}/declarations'
 import { ${className}, getOptions } from './${fileName}.class'
 ${
   fileExists(lib, `client.${language}`)

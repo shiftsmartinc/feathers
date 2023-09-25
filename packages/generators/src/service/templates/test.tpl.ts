@@ -8,6 +8,7 @@ const template = ({ relative, lib, path }: ServiceGeneratorContext) => /* ts */ 
  */
 
 import { describe, expect, test } from 'vitest';
+
 import { app } from '../${relative}/${lib}/app'
 
 describe('${path} service', () => {
