@@ -5,8 +5,8 @@ import { ServiceGeneratorContext } from '../index'
 const template = ({
   camelName,
   upperName,
-  singluarCamelName,
-  singluarUpperName,
+  singularCamelName,
+  singularUpperName,
   fileName,
   relative,
   authStrategies,
@@ -31,14 +31,14 @@ import { dataValidator, queryValidator } from '${relative}/${
 
 /** Main data model schema */
 import { defaultReadonlyFields } from '../configs'
-import { ${singluarCamelName} as ${camelName}Schema } from './${fileName}.schema.gen'
+import { ${singularCamelName} as ${camelName}Schema } from './${fileName}.schema.gen'
 export { ${camelName}Schema };
-export type ${singluarUpperName} = Static<typeof ${camelName}Schema>
+export type ${singularUpperName} = Static<typeof ${camelName}Schema>
 
 export const ${camelName}Validator = getValidator(${camelName}Schema, dataValidator)
-export const ${camelName}Resolver = resolve<${singluarUpperName}, HookContext>({})
+export const ${camelName}Resolver = resolve<${singularUpperName}, HookContext>({})
 
-export const ${camelName}ExternalResolver = resolve<${singluarUpperName}, HookContext>({
+export const ${camelName}ExternalResolver = resolve<${singularUpperName}, HookContext>({
   ${localTemplate(
     authStrategies,
     `/** The password should never be visible externally */
@@ -46,7 +46,7 @@ export const ${camelName}ExternalResolver = resolve<${singluarUpperName}, HookCo
   )}  
 })
 
-const ${camelName}ReadonlyFields: (keyof ${singluarUpperName})[] = [...defaultReadonlyFields]
+const ${camelName}ReadonlyFields: (keyof ${singularUpperName})[] = [...defaultReadonlyFields]
 
 /** 
  * @title: ${camelName}DataSchema
@@ -64,7 +64,7 @@ export const ${camelName}DataSchema =  ${isEntityService ? `Type.Pick` : `Type.O
 })
 export type ${upperName}Data = Static<typeof ${camelName}DataSchema>
 export const ${camelName}DataValidator = getValidator(${camelName}DataSchema, dataValidator)
-export const ${camelName}DataResolver = resolve<${singluarUpperName}, HookContext>({
+export const ${camelName}DataResolver = resolve<${singularUpperName}, HookContext>({
   ${localTemplate(authStrategies, `password: passwordHash({ strategy: 'local' })`)}
 })
 
@@ -80,7 +80,7 @@ export const ${camelName}PatchSchema = Type.Partial(
   })
 export type ${upperName}Patch = Static<typeof ${camelName}PatchSchema>
 export const ${camelName}PatchValidator = getValidator(${camelName}PatchSchema, dataValidator)
-export const ${camelName}PatchResolver = resolve<${singluarUpperName}, HookContext>({
+export const ${camelName}PatchResolver = resolve<${singularUpperName}, HookContext>({
   ${localTemplate(authStrategies, `password: passwordHash({ strategy: 'local' })`)}
 })
 

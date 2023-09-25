@@ -5,8 +5,8 @@ import { ServiceGeneratorContext } from '../index'
 const template = ({
   camelName,
   upperName,
-  singluarCamelName,
-  singluarUpperName,
+  singularCamelName,
+  singularUpperName,
   fileName,
   relative,
   authStrategies,
@@ -35,14 +35,14 @@ import { dataValidator, queryValidator } from '${relative}/${
 
 // Main data model schema
 
-import { ${singluarCamelName} as ${camelName}Schema } from './${fileName}.schema.gen'
+import { ${singularCamelName} as ${camelName}Schema } from './${fileName}.schema.gen'
 export { ${camelName}Schema };
-export type ${singluarUpperName} = FromSchema<typeof ${camelName}Schema>
+export type ${singularUpperName} = FromSchema<typeof ${camelName}Schema>
 
 export const ${camelName}Validator = getValidator(${camelName}Schema, dataValidator)
-export const ${camelName}Resolver = resolve<${singluarUpperName}, HookContext>({})
+export const ${camelName}Resolver = resolve<${singularUpperName}, HookContext>({})
 
-export const ${camelName}ExternalResolver = resolve<${singluarUpperName}, HookContext>({
+export const ${camelName}ExternalResolver = resolve<${singularUpperName}, HookContext>({
   ${localTemplate(
     authStrategies,
     `// The password should never be visible externally

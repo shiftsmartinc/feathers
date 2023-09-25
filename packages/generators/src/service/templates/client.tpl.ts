@@ -8,12 +8,12 @@ import { ${camelName}Client } from './services/${folder.join('/')}/${fileName}.s
 
 const typeExportTemplate = ({
   upperName,
-  singluarUpperName,
+  singularUpperName,
   folder,
   fileName
 }: ServiceGeneratorContext) => /* ts */ `
 export type {
-  ${singluarUpperName},
+  ${singularUpperName},
   ${upperName}Data,
   ${upperName}Query,
   ${upperName}Patch

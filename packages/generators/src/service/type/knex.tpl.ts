@@ -42,7 +42,7 @@ export async function down(knex: Knex): Promise<void> {
 export const template = ({
   className,
   upperName,
-  singluarUpperName,
+  singularUpperName,
   feathers,
   schema,
   fileName,
@@ -60,7 +60,7 @@ import type { Application } from '${relative}/declarations'
 ${
   schema
     ? `import type {
-  ${singluarUpperName},
+  ${singularUpperName},
   ${upperName}Data,
   ${upperName}Patch,
   ${upperName}Query
@@ -74,14 +74,14 @@ type ${upperName}Query = any
 `
 }
 
-export type { ${singluarUpperName}, ${upperName}Data, ${upperName}Patch, ${upperName}Query }
+export type { ${singularUpperName}, ${upperName}Data, ${upperName}Patch, ${upperName}Query }
 
 export interface ${upperName}Params extends KnexAdapterParams<${upperName}Query> {
 }
 
 // By default calls the standard Knex adapter service methods but can be customized with your own functionality.
 export class ${className}<ServiceParams extends Params = ${upperName}Params>
-  extends KnexService<${singluarUpperName}, ${upperName}Data, ${upperName}Params, ${upperName}Patch> {
+  extends KnexService<${singularUpperName}, ${upperName}Data, ${upperName}Params, ${upperName}Patch> {
 }
 
 export const getOptions = (app: Application): KnexAdapterOptions => {

@@ -5,7 +5,7 @@ import { ServiceGeneratorContext } from '../index'
 export const template = ({
   className,
   upperName,
-  singluarUpperName,
+  singularUpperName,
   schema,
   fileName,
   kebabPath,
@@ -23,7 +23,7 @@ import type { Application } from '${relative}/declarations'
 ${
   schema
     ? `import type {
-  ${singluarUpperName},
+  ${singularUpperName},
   ${upperName}Data,
   ${upperName}Patch,
   ${upperName}Query
@@ -37,7 +37,7 @@ type ${upperName}Query = any
 `
 }
 
-export type { ${singluarUpperName}, ${upperName}Data, ${upperName}Patch, ${upperName}Query }
+export type { ${singularUpperName}, ${upperName}Data, ${upperName}Patch, ${upperName}Query }
 
 export interface ${upperName}Params extends MongoDBAdapterParams<${upperName}Query> {
 }
@@ -47,7 +47,7 @@ export interface ${upperName}Params extends MongoDBAdapterParams<${upperName}Que
  * customized with your own functionality.
  */
 export class ${className}<ServiceParams extends Params = ${upperName}Params>
-  extends MongoDBService<${singluarUpperName}, ${upperName}Data, ServiceParams, ${upperName}Patch> {
+  extends MongoDBService<${singularUpperName}, ${upperName}Data, ServiceParams, ${upperName}Patch> {
 }
 
 export const getOptions = (app: Application): MongoDBAdapterOptions => {

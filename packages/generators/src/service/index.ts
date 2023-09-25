@@ -52,11 +52,11 @@ export interface ServiceGeneratorContext extends FeathersBaseContext {
   /**
    * Singular version of the service name
    */
-  singluarCamelName: string
+  singularCamelName: string
   /**
    * Singular version of the service name starting with an uppercase letter
    */
-  singluarUpperName: string
+  singularUpperName: string
   /**
    * Indicates how many file paths we should go up to import other things (e.g. `../../`)
    */
@@ -84,7 +84,7 @@ export interface ServiceGeneratorContext extends FeathersBaseContext {
   /**
    * Do not pluralize the input service name, leave as-is
    */
-  singluar?: boolean
+  singular?: boolean
 }
 
 /**
@@ -193,15 +193,15 @@ export const generate = (ctx: ServiceGeneratorArguments) =>
       )
     )
     .then(async (ctx): Promise<ServiceGeneratorContext> => {
-      const { path, type, authStrategies = [], singluar } = ctx
-      const name = !singluar ? pluralize(ctx.name) : ctx.name
+      const { path, type, authStrategies = [], singular } = ctx
+      const name = !singular ? pluralize(ctx.name) : ctx.name
 
       const kebabName = _.kebabCase(name)
       const camelName = _.camelCase(name)
       const upperName = _.upperFirst(camelName)
       const className = `${upperName}Service`
-      const singluarCamelName = pluralize.singular(name)
-      const singluarUpperName = _.upperFirst(singluarCamelName)
+      const singularCamelName = pluralize.singular(name)
+      const singularUpperName = _.upperFirst(singularCamelName)
 
       const folder = path.split('/').filter((el) => el !== '')
       const relative = ['', ...folder].map(() => '..').join('/')
@@ -218,8 +218,8 @@ export const generate = (ctx: ServiceGeneratorArguments) =>
         className,
         kebabName,
         camelName,
-        singluarCamelName,
-        singluarUpperName,
+        singularCamelName,
+        singularUpperName,
         kebabPath,
         relative,
         authStrategies,
