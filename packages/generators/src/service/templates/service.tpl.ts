@@ -12,7 +12,8 @@ export const template = ({
   className,
   relative,
   schema,
-  fileName
+  fileName,
+  type
 }: ServiceGeneratorContext) => /* ts */ `/**
  * @external https://feathersjs.com/guides/cli/service.html
  * @description For more information about this file see the link above.
@@ -64,7 +65,11 @@ export const ${camelName} = (app: Application) => {
     events: []
   })
   /** Initialize hooks */
-  // @ts-expect-error [ENG-770] FIXME: Types of property 'update' are incompatible: NullableId vs AdapterId
+  ${
+    type === 'mongodb'
+      ? `// @ts-expect-error [ENG-770] FIXME: Types of property 'update' are incompatible: NullableId vs AdapterId`
+      : ''
+  }
   app.service(${camelName}Path).hooks({
     around: {
       all: [${

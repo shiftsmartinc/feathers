@@ -11,7 +11,6 @@ const template = ({
   relative,
   authStrategies,
   isEntityService,
-  schema,
   type,
   cwd,
   lib
@@ -31,7 +30,7 @@ import { dataValidator, queryValidator } from '${relative}/${
   fileExists(cwd, lib, 'schemas') ? 'schemas/' : '' /** This is for legacy backwards compatibility */
 }validators'
 
-${schema ? `import { defaultReadonlyFields } from '../configs'` : ''}
+${type === 'custom' ? '' : `import { defaultReadonlyFields } from '../configs'`}
 import { ${singularCamelName} as ${camelName}Schema } from './${fileName}.schema.gen'
 export { ${camelName}Schema };
 export type ${singularUpperName} = Static<typeof ${camelName}Schema>
@@ -48,7 +47,7 @@ export const ${camelName}ExternalResolver = resolve<${singularUpperName}, HookCo
 })
 
 const ${camelName}ReadonlyFields: (keyof ${singularUpperName})[] = ${
-  schema ? '[...defaultReadonlyFields]' : '[]'
+  type === 'custom' ? '[]' : '[...defaultReadonlyFields]'
 }
 
 /** 
@@ -65,6 +64,7 @@ export const ${camelName}DataSchema =  ${isEntityService ? `Type.Pick` : `Type.O
 ], {
   $id: '${upperName}Data'
 })
+// FIXME: this type is '{}' because the readonlyFields have as type all the keys of the schema
 export type ${upperName}Data = Static<typeof ${camelName}DataSchema>
 export const ${camelName}DataValidator = getValidator(${camelName}DataSchema, dataValidator)
 export const ${camelName}DataResolver = resolve<${singularUpperName}, HookContext>({

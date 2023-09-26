@@ -57,7 +57,7 @@ export class ${className}<ServiceParams extends ${upperName}Params = ${upperName
     return {
       id: 0,
       text: \`A new message with ID: \${id}!\`
-    }
+    } as ${singularUpperName}
   }
 
   async create (data: ${upperName}Data, params?: ServiceParams): Promise<${singularUpperName}>
@@ -70,7 +70,7 @@ export class ${className}<ServiceParams extends ${upperName}Params = ${upperName
     return {
       id: 0,
       ...data
-    }
+    } as ${singularUpperName}
   }
 
   // This method has to be added to the 'methods' option to make it available to clients
@@ -78,7 +78,7 @@ export class ${className}<ServiceParams extends ${upperName}Params = ${upperName
     return {
       id: 0,
       ...data
-    }
+    } as ${singularUpperName}
   }
 
   async patch (id: NullableId, data: ${upperName}Patch, _params?: ServiceParams): Promise<${singularUpperName}> {
@@ -86,14 +86,14 @@ export class ${className}<ServiceParams extends ${upperName}Params = ${upperName
       id: 0,
       text: \`Fallback for \${id}\`,
       ...data
-    }
+    } as ${singularUpperName}
   }
 
   async remove (id: NullableId, _params?: ServiceParams): Promise<${singularUpperName}> {
     return {
       id: 0,
       text: 'removed'
-    }
+    } as ${singularUpperName}
   }
 }
 
