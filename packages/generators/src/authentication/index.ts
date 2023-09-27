@@ -1,6 +1,6 @@
 import chalk from 'chalk'
-import { generator, runGenerators, prompt, install } from '@feathershq/pinion'
-import { addVersions, checkPreconditions, FeathersBaseContext, initializeBaseContext } from '../commons'
+import { generator, prompt, install } from '@feathershq/pinion'
+import { addVersions, checkPreconditions, FeathersBaseContext, initializeBaseContext, runGeneratorsWithCustomTemplates } from '../commons'
 import { generate as serviceGenerator, ServiceGeneratorContext } from '../service/index'
 
 export interface AuthenticationGeneratorContext extends ServiceGeneratorContext {
@@ -84,7 +84,7 @@ export const generate = (ctx: AuthenticationGeneratorArguments) =>
         ...serviceContext
       }
     })
-    .then(runGenerators(__dirname, 'templates'))
+    .then(runGeneratorsWithCustomTemplates())
     .then((ctx) => {
       const dependencies: string[] = []
 

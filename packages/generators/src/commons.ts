@@ -1,5 +1,5 @@
 import fs from 'fs'
-import { join } from 'path'
+import { join, parse, resolve } from 'path'
 import { PackageJson } from 'type-fest'
 import { readFile, writeFile } from 'fs/promises'
 import {
@@ -10,11 +10,14 @@ import {
   getCallable,
   renderTemplate,
   inject,
-  Location
+  Location,
+  runGenerator,
+  mapCallables,
 } from '@feathershq/pinion'
 import * as ts from 'typescript'
 import prettier, { Options as PrettierOptions } from 'prettier'
-import path from 'path'
+import { listFiles } from '@feathershq/pinion/lib/utils'
+import { addTrace } from '@feathershq/pinion/lib/ops/helpers'
 
 export const { version } = JSON.parse(fs.readFileSync(join(__dirname, '..', 'package.json')).toString())
 
@@ -93,6 +96,15 @@ export interface FeathersBaseContext extends PinionContext {
    * Used for installing development dependencies during testing.
    */
   dependencyVersions?: DependencyVersions
+  /**
+   * The type of the generator specified with the 'generate' command. (e.g., service, hook, etc.)
+   */
+  generatorName: string
+  /**
+   * The folder where custom templates for the generator are stored.
+   * It can be given as an argument in the CLI, or it will default to the local directory '_templates'
+   */
+  customTemplatesRoot?: string
 }
 
 /**
@@ -117,7 +129,7 @@ export const initializeBaseContext =
     Promise.resolve(ctx)
       .then(loadJSON(fromFile('package.json'), (pkg) => ({ pkg }), {}))
       .then(
-        loadJSON(path.join(__dirname, '..', 'package.json'), (pkg: PackageJson) => ({
+        loadJSON(join(__dirname, '..', 'package.json'), (pkg: PackageJson) => ({
           dependencyVersions: {
             ...pkg.devDependencies,
             ...ctx.dependencyVersions,
@@ -320,3 +332,84 @@ export const localTemplate = (authStrategies: string[], content: string, alt = '
  */
 export const oauthTemplate = (authStrategies: string[], content: string) =>
   authStrategies.filter((s) => s !== 'local').length > 0 ? content : ''
+
+/**
+ * Run all generators for a command
+ * but overwrites with custom templates if exist
+ *
+ * @param templatesFolder the directory name where the templates are stored for a command
+ *  (e.g. templates/service/{templatesFolder}/service.tpl.js)
+ * @returns The context returned by all generators merged together
+ */
+export const runGeneratorsWithCustomTemplates =
+<C extends FeathersBaseContext>(templatesFolder: string = 'templates') =>
+async (ctx: C) => {
+  // Generate custom templates first
+  const customTemplatesLocation = resolve(process.cwd(), ctx.customTemplatesRoot, ctx.generatorName, templatesFolder)
+  let generatedCustomTemplates: string[]
+  ({ ctx, generatedTemplatesNames: generatedCustomTemplates } = await runGeneratorsWithSkippables(ctx, customTemplatesLocation, []))
+
+  // Generate the default templates, skipping those generated from custom ones.
+  const defaultTemplatesLocation = resolve(__dirname, ctx.generatorName, templatesFolder)
+  return (await runGeneratorsWithSkippables(ctx, defaultTemplatesLocation, generatedCustomTemplates)).ctx
+}
+
+/**
+ * Runs the generators on all js files from the specified directory
+ * skipping the templates given as param
+ * 
+ * @param ctx The current context
+ * @param dir The source directory 
+ * @param skipTemplates Array of template names that will be skipped 
+ * @returns Array of file names for successfully generated templates
+ */
+export const runGeneratorsWithSkippables = async <C extends FeathersBaseContext>(ctx: C, dir: string, skipTemplates: string[] = []) => {
+  if (!fileExists(dir)) {
+    return { ctx }
+  }
+  
+  const generatedTemplatesNames: string[] = []
+  const templates = await listFiles(dir, '.tpl.js')
+  for (const template of templates.sort()) {
+    const fileName = parse(template).name
+    
+    if (skipTemplates.includes(fileName)) {
+      continue
+    }
+
+    try {
+      await runGenerator(template)(ctx)
+      generatedTemplatesNames.push(fileName)
+    } catch (error) {
+      console.error(`Failed to run generator for ${fileName}`)
+    }
+  }
+
+  if (generatedTemplatesNames.length) {
+    ctx = addTrace(ctx, 'runGeneratorsWithCustomTemplates', { templates })
+  }
+
+  return { ctx, generatedTemplatesNames }
+}
+
+/**
+ * Run a single generator file but check if a custom template exists first.
+ *
+ * @param pathParts The parts of the folder to run. Can be assembled dynamically based on context.
+ * @returns The current and generator context
+ */
+export const runGeneratorWithCustomTemplate =
+  <C extends FeathersBaseContext>(...pathParts: Callable<string, C>[]) =>
+  async (ctx: C) => {
+    const segments = (await mapCallables(pathParts, ctx)).flat()
+    const file = join(...segments)
+    const relativeFilePath = file.split(ctx.generatorName).pop()
+
+    const customTemplatesDir = resolve(process.cwd(), ctx.customTemplatesRoot)
+    const customTemplate = join(customTemplatesDir, ctx.generatorName, relativeFilePath)
+    if (fileExists(customTemplate)) {
+      return await runGenerator(customTemplate)(ctx)
+    }
+    
+    return await runGenerator(file)(ctx)
+  }

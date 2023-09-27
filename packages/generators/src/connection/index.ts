@@ -1,4 +1,4 @@
-import { generator, runGenerator, prompt, install, mergeJSON, toFile, when } from '@feathershq/pinion'
+import { generator, prompt, install, mergeJSON, toFile, when } from '@feathershq/pinion'
 import chalk from 'chalk'
 import {
   FeathersBaseContext,
@@ -6,7 +6,8 @@ import {
   getDatabaseAdapter,
   addVersions,
   checkPreconditions,
-  initializeBaseContext
+  initializeBaseContext,
+  runGeneratorWithCustomTemplate
 } from '../commons'
 
 export interface ConnectionGeneratorContext extends FeathersBaseContext {
@@ -81,7 +82,7 @@ export const generate = (ctx: ConnectionGeneratorArguments) =>
     .then(
       when<ConnectionGeneratorContext>(
         (ctx) => ctx.database !== 'other',
-        runGenerator<ConnectionGeneratorContext>(
+        runGeneratorWithCustomTemplate<ConnectionGeneratorContext>(
           __dirname,
           'templates',
           ({ database }) => `${getDatabaseAdapter(database)}.tpl`

@@ -1,7 +1,7 @@
 import { sep } from 'path'
 import chalk from 'chalk'
-import { generator, prompt, runGenerators, fromFile, install, copyFiles, toFile } from '@feathershq/pinion'
-import { FeathersBaseContext, FeathersAppInfo, initializeBaseContext, addVersions } from '../commons'
+import { generator, prompt, fromFile, install, copyFiles, toFile } from '@feathershq/pinion'
+import { FeathersBaseContext, FeathersAppInfo, initializeBaseContext, addVersions, runGeneratorsWithCustomTemplates } from '../commons'
 import { generate as connectionGenerator, prompts as connectionPrompts } from '../connection'
 
 export interface AppGeneratorData extends FeathersAppInfo {
@@ -130,7 +130,7 @@ export const generate = (ctx: AppGeneratorArguments) =>
         ...connectionPrompts(ctx)
       ])
     )
-    .then(runGenerators(__dirname, 'templates'))
+    .then(runGeneratorsWithCustomTemplates())
     .then(copyFiles(fromFile(__dirname, 'static'), toFile('.')))
     .then(initializeBaseContext())
     .then(async (ctx) => {
